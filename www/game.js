@@ -1,20 +1,20 @@
 var game = {};
 
 var commands = FuzzySet();
-commands.add('Spellcasting');
-commands.add('Summoning');
-commands.add('Dismiss');
+commands.add('spellcasting');
+commands.add('summoning');
+commands.add('dismiss');
 
 var spells = FuzzySet();
-spells.add('Penguin');
-spells.add('Fireball');
-spells.add('Burrito');
-spells.add('Beer');
+spells.add('penguin');
+spells.add('fireball');
+spells.add('burrito');
+spells.add('beer');
 
 
 function parseCommand(str) {
-    var first = str.split(' ')[0];
-    var m = commands.get(first);
+    var firstpair = str.split(' ').slice(0, 2).join(' ');
+    var m = commands.get(firstpair);
     var command = m ? m[0][1]: 'spellcasting';
 
     if (command === 'spellcasting') {
@@ -29,9 +29,10 @@ function parseCommand(str) {
 }
 
 
-document.onkeyup = function (ev) {
+document.onkeypress = function (ev) {
     // spacebar
     if (ev.keyCode === 32) {
+        ev.preventDefault();
         if (speech.recording) {
             speech.stop();
         }
@@ -42,6 +43,7 @@ document.onkeyup = function (ev) {
                 alert(cmd);
             });
         }
+        return;
     }
 };
 
