@@ -7,5 +7,5 @@ INSTALL:
 
 RUN:
 
-- Run start.sh
-- Open http://localhost:8080 in chrome
+- Run ./start.js
+- Open https://localhost:8080 in chrome

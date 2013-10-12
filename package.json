@@ -3,6 +3,6 @@
     "version": "0.0.1",
     "description": "FPS Game Jam!",
     "dependencies": {
-        "http-server": "latest"
+        "connect": "latest"
     }
 }
