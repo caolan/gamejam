@@ -30,3 +30,12 @@ game.handleSpeech = function (str) {
         alert(command);
     }
 };
+
+
+
+var canvas = new fabric.StaticCanvas('c');
+canvas.setDimensions({width: 1280, height: 720});
+canvas.setBackgroundImage('img/bg5.png', canvas.renderAll.bind(canvas), {
+  backgroundImageOpacity: 0.5,
+  backgroundImageStretch: true
+});
