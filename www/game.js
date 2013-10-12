@@ -49,7 +49,7 @@ function cropImage(img, x, y, w, h) {
     c.width = w;
     c.height = h;
     var ctx = c.getContext('2d');
-    ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+    ctx.drawImage(img, x, y, w, h, 0, 0, w, h);
     return c;
 }
 
@@ -210,23 +210,27 @@ async.map(images, loadImage, function (err, images) {
         name: 'talking',
         counter: 0,
         animate: function () {
-            /*
             this.image = this.frames[Math.floor(this.counter/10)];
             this.counter++;
-            if (counter >= 20) {
+            if (this.counter >= 20) {
                 this.counter = 0;
             }
-            */
         },
         x: 0,
         y: 0,
         z: 10,
         w: 124,
         h: 96,
-        image: cropImage(
-            _.findWhere(images, {name: 'talk'}).image,
-            0, 0, 123, 96
-        )
+        frames: [
+            cropImage(
+                _.findWhere(images, {name: 'talk'}).image,
+                0, 0, 123, 96
+            ),
+            cropImage(
+                _.findWhere(images, {name: 'talk'}).image,
+                123, 0, 123, 96
+            )
+        ]
     };
 
     window.sprites = sprites;
