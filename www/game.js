@@ -177,29 +177,43 @@ async.map(images, loadImage, function (err, images) {
         }
     ];
 
-    function animationLoop() {
-        var interval = setInterval(function () {
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            sprites = _.sortBy(sprites, 'z');
-            sprites.forEach(function (s) {
-                ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
-                s.animate();
-            });
-        }, 1000/40);
+    var talking = {
+        name: 'talking',
+        animate: function () {},
+        x: 0,
+        y: 0,
+        z: 10,
+        w: 124,
+        h: 96,
+        image: _.findWhere(images, {name: 'talk'}).image
+    };
 
-    }
+    window.sprites = sprites;
+
     speech.onstartrecording = function () {
-        clear(ctx);
-        animationLoop();
-        ctx.drawImage(images[6], 0, 0);
+        sprites.push(talking);
     };
 
     speech.onstoprecording = function () {
-        clear(ctx);
-        animationLoop();
+        sprites = _.filter(sprites, function (s) {
+            return s.name !== 'talking';
+        });
     };
 
-    clear(ctx);
+    function animationLoop() {
+        clear(ctx);
+        sprites = _.sortBy(sprites, 'z');
+        sprites.forEach(function (s) {
+            ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
+            s.animate();
+        });
+    }
+
+    var interval = setInterval(function () {
+        animationLoop();
+    }, 1000/40);
+
     animationLoop();
+
 });
 
