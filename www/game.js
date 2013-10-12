@@ -11,26 +11,39 @@ spells.add('Fireball');
 spells.add('Burrito');
 spells.add('Beer');
 
-game.handleSpeech = function (str) {
-    var firstpair = str.split(' ').slice(0, 2).join(' ');
-    console.log(['firstpair', firstpair]);
-    console.log(['commands.get(firstpair)', commands.get(firstpair)]);
-    var m = commands.get(firstpair);
-    var command = m ? m[0][1]: 'Spellcasting';
 
-    if (command === 'Spellcasting') {
+function parseCommand(str) {
+    var first = str.split(' ')[0];
+    var m = commands.get(first);
+    var command = m ? m[0][1]: 'spellcasting';
+
+    if (command === 'spellcasting') {
         var rest = str.split(' ').slice(1).join(' ');
-        console.log(['rest', rest]);
-        console.log(['spells.get(rest)', spells.get(rest)]);
         var m2 = spells.get(rest);
-        var spell = m2 ? m2[0][1]: 'unknown';
-        alert('SPELLCASTING: ' + spell);
+        var spell = m2 ? m2[0][1]: null;
+        return ['spellcasting', spell];
     }
     else {
-        alert(command);
+        return [command];
+    }
+}
+
+
+document.onkeyup = function (ev) {
+    // spacebar
+    if (ev.keyCode === 32) {
+        if (speech.recording) {
+            speech.stop();
+        }
+        else {
+            speech.listen(function (err, str) {
+                var cmd = parseCommand(str);
+                cmd[0] = cmd[0].toUpperCase();
+                alert(cmd);
+            });
+        }
     }
 };
-
 
 
 var canvas = document.getElementById('c');
@@ -41,8 +54,10 @@ var images = [
     'img/bg1.png',
     'img/bg2.png',
     'img/bg3.png',
+    'img/bg6.png',
     'img/bg4.png',
-    'img/bg5.png'
+    'img/bg5.png',
+    'img/talk.png'
 ];
 
 function loadImage(url, callback) {
@@ -51,13 +66,43 @@ function loadImage(url, callback) {
     img.src = url; // Set source path
 }
 
+function clear(ctx, preserveTransform) {
+    if (preserveTransform) {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    if (preserveTransform) {
+        ctx.restore();
+    }
+}
+
 async.map(images, loadImage, function (err, images) {
     if (err) {
         return alert(err);
     }
     console.log(images);
-    images.forEach(function (img) {
-        // execute drawImage statements here
-        ctx.drawImage(img, 0, 0, 1280, 720);
-    });
+
+    var bgimages = images.slice(0, 6);
+    function drawBg() {
+        bgimages.forEach(function (img) {
+            // execute drawImage statements here
+            ctx.drawImage(img, 0, 0, 1280, 720);
+        });
+    }
+
+    speech.onstartrecording = function () {
+        clear(ctx);
+        drawBg();
+        ctx.drawImage(images[6], 0, 0);
+    };
+
+    speech.onstoprecording = function () {
+        clear(ctx);
+        drawBg();
+    };
+
+    clear(ctx);
+    drawBg();
 });
+

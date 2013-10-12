@@ -1,59 +1,57 @@
-// TODO: call recognition.stop() when key pressed to signal you've stopped talking
-
-
 if (!('webkitSpeechRecognition' in window)) {
     upgrade();
 }
-else {
-    var recognition = new webkitSpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
 
-    recognition.onsoundstart = function () {
+var speech = {};
+
+speech.recording = false;
+
+speech.recognition = new webkitSpeechRecognition();
+speech.recognition.continuous = true;
+speech.recognition.interimResults = true;
+
+speech.listen = function (callback) {
+    speech.recognition.onsoundstart = function () {
         console.log('sound start');
     };
-    recognition.onsoundend = function () {
+    speech.recognition.onsoundend = function () {
         console.log('sound end');
     };
-    recognition.onspeechstart = function () {
+    speech.recognition.onspeechstart = function () {
         console.log('speech start');
     };
-    recognition.onspeechend = function () {
+    speech.recognition.onspeechend = function () {
         console.log('speech end');
     };
-    recognition.onstart = function() {
+    speech.recognition.onstart = function() {
+        speech.recording = true;
+        if (speech.onstartrecording) {
+            speech.onstartrecording();
+        }
         console.log('start');
     };
-    recognition.onerror = function(event) {
+    speech.recognition.onerror = function(event) {
         console.log('error');
     };
-    recognition.onend = function() {
-        console.log('end');
-        console.log('restarting');
-        recognition.start();
-    };
-
-    document.onkeyup = function (ev) {
-        // spacebar
-        if (ev.keyCode === 32) {
-            recognition.stop();
+    speech.recognition.onend = function() {
+        speech.recording = false;
+        if (speech.onstoprecording) {
+            speech.onstoprecording();
         }
+        console.log('end');
     };
-
-    recognition.onresult = function (event) {
+    speech.recognition.onresult = function (event) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
-                // ignore final results
                 var str = event.results[i][0].transcript.toLowerCase();
                 str = str.replace(/^\s+|\s+$/,''); //trim
-                game.handleSpeech(str);
-            }
-            else {
-                //var interim = event.results[i][0].transcript;
-                //console.log('interim: ' + interim);
+                callback(null, str);
             }
         }
     };
-    recognition.start();
-    window.recognition = recognition;
-}
+    speech.recognition.start();
+};
+
+speech.stop = function () {
+    speech.recognition.stop();
+};
