@@ -3,8 +3,6 @@
     "summoning": "ra",
     "health": 100,
     "spells": [
-        "beer",
-        "penguin",
         "fireball"
         ],
     "images": [
