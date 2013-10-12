@@ -102,26 +102,41 @@ async.map(images, loadImage, function (err, images) {
     }
     console.log(images);
 
-    var bgimages = images.slice(0, 6);
-    function drawBg() {
-        bgimages.forEach(function (img) {
-            // execute drawImage statements here
-            ctx.drawImage(img, 0, 0, 1280, 720);
-        });
-    }
+    sun = {animate: function () {
+           this.x += 1;
+           if (this.x > ctx.canvas.width) {
+               this.x = 0;
+           }
+       },
+       x: 2,
+       y:3,
+       image: images[0]};
 
+    var bgimages = images.slice(1, 6);
+    function animationLoop() {
+        var interval = setInterval(function () {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(sun.image, sun.x, sun.y);
+            sun.animate();
+            bgimages.forEach(function (img) {
+                // execute drawImage statements here
+                ctx.drawImage(img, 0, 0, 1280, 720);
+            });
+        }, 1000/40);
+
+    }
     speech.onstartrecording = function () {
         clear(ctx);
-        drawBg();
+        animationLoop();
         ctx.drawImage(images[6], 0, 0);
     };
 
     speech.onstoprecording = function () {
         clear(ctx);
-        drawBg();
+        animationLoop();
     };
 
     clear(ctx);
-    drawBg();
+    animationLoop();
 });
 
