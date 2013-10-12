@@ -33,9 +33,26 @@ game.handleSpeech = function (str) {
 
 
 
-var canvas = new fabric.StaticCanvas('c');
-canvas.setDimensions({width: 1280, height: 720});
-canvas.setBackgroundImage('img/bg5.png', canvas.renderAll.bind(canvas), {
-  backgroundImageOpacity: 0.5,
-  backgroundImageStretch: true
-});
+var canvas = document.getElementById('c');
+var ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+
+var img = new Image();   // Create new img element
+img.addEventListener("load", function() {
+    // execute drawImage statements here
+    ctx.drawImage(img, 0, 0, 1280, 720);
+}, false);
+img.src = 'img/bg5.png'; // Set source path
+
+
+/*
+for (var i = 1; i <= 6; i++) {
+    fabric.Image.fromURL('img/bg' + i + '.png', function (oImg) {
+        oImg.width = 640;
+        oImg.height = 360;
+        oImg.top = 0;
+        oImg.left = 0;
+        canvas.add(oImg);
+    });
+}
+*/
