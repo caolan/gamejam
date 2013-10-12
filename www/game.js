@@ -10,18 +10,33 @@ spells.add('penguin');
 spells.add('fireball');
 spells.add('burrito');
 spells.add('beer');
+spells.add('shoelaces');
+spells.add('walrus');
 
+var summons = FuzzySet();
+summons.add('Odin');
+summons.add('Thor');
+summons.add('Zeus');
+summons.add('Sasquatch');
+
+function pickItem(set, str) {
+    var m = set.get(str);
+    var values = set.values();
+    // if match, get first one, otherwise pick a random entry
+    return m ? m[0][1]: values[Math.floor(Math.random()*values.length)];
+}
 
 function parseCommand(str) {
+    console.log(['parseCommand', str]);
     var firstpair = str.split(' ').slice(0, 2).join(' ');
-    var m = commands.get(firstpair);
-    var command = m ? m[0][1]: 'spellcasting';
+    var rest = str.split(' ').slice(1).join(' ');
 
+    var command = pickItem(commands, firstpair);
     if (command === 'spellcasting') {
-        var rest = str.split(' ').slice(1).join(' ');
-        var m2 = spells.get(rest);
-        var spell = m2 ? m2[0][1]: null;
-        return ['spellcasting', spell];
+        return ['spellcasting', pickItem(spells, rest)];
+    }
+    else if (command === 'summoning') {
+        return ['summoning', pickItem(summons, rest)];
     }
     else {
         return [command];
@@ -39,6 +54,7 @@ document.onkeypress = function (ev) {
         else {
             speech.listen(function (err, str) {
                 var cmd = parseCommand(str);
+                console.log(cmd);
                 cmd[0] = cmd[0].toUpperCase();
                 alert(cmd);
             });
