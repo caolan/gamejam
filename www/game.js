@@ -12,6 +12,7 @@ spells.add('burrito');
 spells.add('beer');
 spells.add('shoelaces');
 spells.add('walrus');
+spells.add('nyan cat');
 
 var summons = FuzzySet();
 summons.add('Odin');
