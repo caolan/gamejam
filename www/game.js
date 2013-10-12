@@ -1,27 +1,42 @@
 var game = {};
 
 var commands = FuzzySet();
-commands.add('Spellcasting');
-commands.add('Summoning');
-commands.add('Dismiss');
+commands.add('spellcasting');
+commands.add('summoning');
+commands.add('dismiss');
 
 var spells = FuzzySet();
-spells.add('Penguin');
-spells.add('Fireball');
-spells.add('Burrito');
-spells.add('Beer');
+spells.add('penguin');
+spells.add('fireball');
+spells.add('burrito');
+spells.add('beer');
+spells.add('shoelaces');
+spells.add('walrus');
 
+var summons = FuzzySet();
+summons.add('Odin');
+summons.add('Thor');
+summons.add('Zeus');
+summons.add('Sasquatch');
+
+function pickItem(set, str) {
+    var m = set.get(str);
+    var values = set.values();
+    // if match, get first one, otherwise pick a random entry
+    return m ? m[0][1]: values[Math.floor(Math.random()*values.length)];
+}
 
 function parseCommand(str) {
-    var first = str.split(' ')[0];
-    var m = commands.get(first);
-    var command = m ? m[0][1]: 'spellcasting';
+    console.log(['parseCommand', str]);
+    var firstpair = str.split(' ').slice(0, 2).join(' ');
+    var rest = str.split(' ').slice(1).join(' ');
 
+    var command = pickItem(commands, firstpair);
     if (command === 'spellcasting') {
-        var rest = str.split(' ').slice(1).join(' ');
-        var m2 = spells.get(rest);
-        var spell = m2 ? m2[0][1]: null;
-        return ['spellcasting', spell];
+        return ['spellcasting', pickItem(spells, rest)];
+    }
+    else if (command === 'summoning') {
+        return ['summoning', pickItem(summons, rest)];
     }
     else {
         return [command];
@@ -29,24 +44,27 @@ function parseCommand(str) {
 }
 
 
-document.onkeyup = function (ev) {
+document.onkeypress = function (ev) {
     // spacebar
     if (ev.keyCode === 32) {
+        ev.preventDefault();
         if (speech.recording) {
             speech.stop();
         }
         else {
             speech.listen(function (err, str) {
                 var cmd = parseCommand(str);
+                console.log(cmd);
                 cmd[0] = cmd[0].toUpperCase();
                 alert(cmd);
             });
         }
+        return;
     }
 };
 
 
-var canvas = document.getElementById('c');
+var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
