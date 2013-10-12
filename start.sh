@@ -1,2 +1,2 @@
 #!/bin/bash
-nw .
+node node_modules/.bin/http-server .

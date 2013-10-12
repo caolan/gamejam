@@ -1,4 +1,8 @@
 {
     "name": "gamejam",
-    "main": "index.html"
+    "version": "0.0.1",
+    "description": "FPS Game Jam!",
+    "dependencies": {
+        "http-server": "latest"
+    }
 }
