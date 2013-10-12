@@ -76,7 +76,7 @@ var images = [
     {name: 'nearcloud', url: 'resources/environment/bg4.png'},
     {name: 'bg5', url: 'resources/environment/bg5.png'},
     {name: 'bg6', url: 'resources/environment/bg6.png'},
-    {name: 'talk', url: 'resources/sprites/Display/talk.png'}
+    {name: 'talk', url: 'resources/sprites/display/talk.png'}
 ];
 
 function loadImage(x, callback) {
