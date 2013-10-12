@@ -1,0 +1,4 @@
+Everything in here should be a god or a spell effect
+Each of these needs artwork plus a json file describing:
+ - Keywords
+ - Effects
