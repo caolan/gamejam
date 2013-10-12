@@ -28,7 +28,7 @@
             "uniqueItems": true
         },
         "images": {
-            "description": "Paths to image files for the god's hat, head, body and legs"
+            "description": "Paths to image files for the god's hat, head, body and legs",
             "type": "array",
             "items": {
                 "type": "string"
@@ -39,6 +39,7 @@
         }
     },
     "required": [
+        "images",
         "summoning",
         "health",
         "spells"

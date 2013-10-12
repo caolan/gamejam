@@ -4,6 +4,15 @@
     "description": "Attributes of spells",
     "type": "object",
     "properties": {
+        "images": {
+            "description": "Paths to image files for the god's hat, head, body and legs",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
         "spellcasting": {
             "description": "Word to cast the spell",
             "type": "string"
@@ -22,6 +31,7 @@
         }
     },
     "required": [
+        "images",
         "spellcasting",
         "magnitude",
         "effect"
