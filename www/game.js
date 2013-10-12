@@ -37,22 +37,27 @@ var canvas = document.getElementById('c');
 var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
-var img = new Image();   // Create new img element
-img.addEventListener("load", function() {
-    // execute drawImage statements here
-    ctx.drawImage(img, 0, 0, 1280, 720);
-}, false);
-img.src = 'img/bg5.png'; // Set source path
+var images = [
+    'img/bg1.png',
+    'img/bg2.png',
+    'img/bg3.png',
+    'img/bg4.png',
+    'img/bg5.png'
+];
 
-
-/*
-for (var i = 1; i <= 6; i++) {
-    fabric.Image.fromURL('img/bg' + i + '.png', function (oImg) {
-        oImg.width = 640;
-        oImg.height = 360;
-        oImg.top = 0;
-        oImg.left = 0;
-        canvas.add(oImg);
-    });
+function loadImage(url, callback) {
+    var img = new Image();   // Create new img element
+    img.addEventListener("load", function() { callback(null, img); }, false);
+    img.src = url; // Set source path
 }
-*/
+
+async.map(images, loadImage, function (err, images) {
+    if (err) {
+        return alert(err);
+    }
+    console.log(images);
+    images.forEach(function (img) {
+        // execute drawImage statements here
+        ctx.drawImage(img, 0, 0, 1280, 720);
+    });
+});
