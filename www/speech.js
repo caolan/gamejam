@@ -33,23 +33,24 @@ else {
         recognition.start();
     };
 
+    document.onkeyup = function (ev) {
+        // spacebar
+        if (ev.keyCode === 32) {
+            recognition.stop();
+        }
+    };
+
     recognition.onresult = function (event) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
                 // ignore final results
-                var command = event.results[i][0].transcript.toLowerCase();
-                command = command.replace(/^\s+|\s+$/,''); //trim
-                var words = command.split(/\s+/g);
-                game.handleSpeech(words);
+                var str = event.results[i][0].transcript.toLowerCase();
+                str = str.replace(/^\s+|\s+$/,''); //trim
+                game.handleSpeech(str);
             }
             else {
-                var interim = event.results[i][0].transcript;
-                console.log('interim: ' + interim);
-                // restart listening
-                //recognition.stop();
-                //recognition.start();
-                // user is speaking
-                //document.getElementById('counter').style.color = 'red';
+                //var interim = event.results[i][0].transcript;
+                //console.log('interim: ' + interim);
             }
         }
     };
