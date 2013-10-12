@@ -70,13 +70,13 @@ var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
 var images = [
-    {name: 'sun', url: 'img/bg1.png'},
-    {name: 'farcloud', url: 'img/bg2.png'},
-    {name: 'bg3', url: 'img/bg3.png'},
-    {name: 'bg4', url: 'img/bg4.png'},
-    {name: 'bg5', url: 'img/bg5.png'},
-    {name: 'bg6', url: 'img/bg6.png'},
-    {name: 'talk', url: 'img/talk.png'}
+    {name: 'sun', url: 'resources/environment/bg1.png'},
+    {name: 'farcloud', url: 'resources/environment/bg2.png'},
+    {name: 'bg3', url: 'resources/environment/bg3.png'},
+    {name: 'bg4', url: 'resources/environment/bg4.png'},
+    {name: 'bg5', url: 'resources/environment/bg5.png'},
+    {name: 'bg6', url: 'resources/environment/bg6.png'},
+    {name: 'talk', url: 'resources/sprites/Display/talk.png'}
 ];
 
 function loadImage(x, callback) {
