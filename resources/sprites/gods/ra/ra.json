@@ -1,0 +1,16 @@
+{
+    "schema": "../godschema.json"
+    "summoning": "ra",
+    "health": 100,
+    "spells": [
+        "beer",
+        "penguin",
+        "fireball"
+        ],
+    "images": [
+        "ra0.png",
+        "ra1.png",
+        "ra2.png",
+        "ra3.png" 
+        ]
+}
