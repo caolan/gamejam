@@ -44,6 +44,15 @@ function parseCommand(str) {
     }
 }
 
+function cropImage(img, x, y, w, h) {
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    var ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+    return c;
+}
+
 
 document.onkeypress = function (ev) {
     // spacebar
@@ -199,13 +208,25 @@ async.map(images, loadImage, function (err, images) {
 
     var talking = {
         name: 'talking',
-        animate: function () {},
+        counter: 0,
+        animate: function () {
+            /*
+            this.image = this.frames[Math.floor(this.counter/10)];
+            this.counter++;
+            if (counter >= 20) {
+                this.counter = 0;
+            }
+            */
+        },
         x: 0,
         y: 0,
         z: 10,
         w: 124,
         h: 96,
-        image: _.findWhere(images, {name: 'talk'}).image
+        image: cropImage(
+            _.findWhere(images, {name: 'talk'}).image,
+            0, 0, 123, 96
+        )
     };
 
     window.sprites = sprites;
@@ -224,8 +245,8 @@ async.map(images, loadImage, function (err, images) {
         clear(ctx);
         sprites = _.sortBy(sprites, 'z');
         sprites.forEach(function (s) {
-            ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
             s.animate();
+            ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
         });
     }
 
