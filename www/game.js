@@ -73,7 +73,7 @@ var images = [
     {name: 'sun', url: 'resources/environment/bg1.png'},
     {name: 'farcloud', url: 'resources/environment/bg2.png'},
     {name: 'bg3', url: 'resources/environment/bg3.png'},
-    {name: 'bg4', url: 'resources/environment/bg4.png'},
+    {name: 'nearcloud', url: 'resources/environment/bg4.png'},
     {name: 'bg5', url: 'resources/environment/bg5.png'},
     {name: 'bg6', url: 'resources/environment/bg6.png'},
     {name: 'talk', url: 'resources/sprites/Display/talk.png'}
@@ -156,14 +156,34 @@ async.map(images, loadImage, function (err, images) {
             image: _.findWhere(images, {name: 'bg6'}).image
         },
         {
-            name: 'bg4',
-            animate: function () {},
+            name: 'nearcloud',
+            animate: function () {
+               this.x += 4;
+               if (this.x > ctx.canvas.width) {
+                   this.x = 0;
+               }
+            },
             x: 0,
             y: 0,
             z: 5,
             w: 1280,
             h: 720,
-            image: _.findWhere(images, {name: 'bg4'}).image
+            image: _.findWhere(images, {name: 'nearcloud'}).image
+        },
+        {
+            name: 'nearcloudoffset',
+            animate: function () {
+               this.x += 4;
+               if (this.x > 0) {
+                   this.x = -ctx.canvas.width;
+               }
+            },
+            x: -ctx.canvas.width,
+            y: 0,
+            z: 5,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'nearcloud'}).image
         },
         {
             name: 'bg5',
