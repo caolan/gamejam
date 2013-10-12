@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Spell",
+    "description": "Attributes of spells",
+    "type": "object",
+    "properties": {
+        "spellcasting": {
+            "description": "Word to cast the spell",
+            "type": "string"
+        },
+        "magnitude": {
+            "description": "Magnitude of the spell's effect",
+            "type": "number"
+        },
+        "effect": {
+            "description": "What the spell does",
+            "type": "string",
+            "enum": [
+                "heal",
+                "hit"
+            ]
+        }
+    },
+    "required": [
+        "spellcasting",
+        "magnitude",
+        "effect"
+    ]
+}
