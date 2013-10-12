@@ -70,19 +70,22 @@ var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
 var images = [
-    'img/bg1.png',
-    'img/bg2.png',
-    'img/bg3.png',
-    'img/bg6.png',
-    'img/bg4.png',
-    'img/bg5.png',
-    'img/talk.png'
+    {name: 'sun', url: 'img/bg1.png'},
+    {name: 'bg2', url: 'img/bg2.png'},
+    {name: 'bg3', url: 'img/bg3.png'},
+    {name: 'bg4', url: 'img/bg4.png'},
+    {name: 'bg5', url: 'img/bg5.png'},
+    {name: 'bg6', url: 'img/bg6.png'},
+    {name: 'talk', url: 'img/talk.png'}
 ];
 
-function loadImage(url, callback) {
+function loadImage(x, callback) {
     var img = new Image();   // Create new img element
-    img.addEventListener("load", function() { callback(null, img); }, false);
-    img.src = url; // Set source path
+    img.addEventListener("load", function() {
+        x.image = img;
+        callback(null, x);
+    }, false);
+    img.src = x.url; // Set source path
 }
 
 function clear(ctx, preserveTransform) {
@@ -100,27 +103,82 @@ async.map(images, loadImage, function (err, images) {
     if (err) {
         return alert(err);
     }
-    console.log(images);
 
-    sun = {animate: function () {
-           this.x += 1;
-           if (this.x > ctx.canvas.width) {
-               this.x = 0;
-           }
-       },
-       x: 2,
-       y:3,
-       image: images[0]};
+    var sprites = [
+        {
+            name: 'sun',
+            animate: function () {
+               this.x += 1;
+               if (this.x > ctx.canvas.width) {
+                   this.x = 0;
+               }
+            },
+            x: 0,
+            y: 0,
+            z: 1,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'sun'}).image
+        },
+        {
+            name: 'bg2',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 2,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'bg2'}).image
+        },
+        {
+            name: 'bg3',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 3,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'bg3'}).image
+        },
+        {
+            name: 'bg6',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 4,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'bg6'}).image
+        },
+        {
+            name: 'bg4',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 5,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'bg4'}).image
+        },
+        {
+            name: 'bg5',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 6,
+            w: 1280,
+            h: 720,
+            image: _.findWhere(images, {name: 'bg5'}).image
+        }
+    ];
 
-    var bgimages = images.slice(1, 6);
     function animationLoop() {
         var interval = setInterval(function () {
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            ctx.drawImage(sun.image, sun.x, sun.y);
-            sun.animate();
-            bgimages.forEach(function (img) {
-                // execute drawImage statements here
-                ctx.drawImage(img, 0, 0, 1280, 720);
+            sprites = _.sortBy(sprites, 'z');
+            sprites.forEach(function (s) {
+                ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
+                s.animate();
             });
         }, 1000/40);
 
