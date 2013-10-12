@@ -1,0 +1,9 @@
+{
+    "schema": "../spellschema.json",
+    "spellcasting": "fireball",
+    "magnitude": 10,
+    "effect": "hit",
+    "images": [
+        "fireball.png"
+        ]
+}

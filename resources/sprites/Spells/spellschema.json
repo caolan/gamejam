@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Spell",
+    "description": "Attributes of spells",
+    "type": "object",
+    "properties": {
+        "images": {
+            "description": "Paths to image files for the god's hat, head, body and legs",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "spellcasting": {
+            "description": "Word to cast the spell",
+            "type": "string"
+        },
+        "magnitude": {
+            "description": "Magnitude of the spell's effect",
+            "type": "number"
+        },
+        "effect": {
+            "description": "What the spell does",
+            "type": "string",
+            "enum": [
+                "heal",
+                "hit"
+            ]
+        }
+    },
+    "required": [
+        "images",
+        "spellcasting",
+        "magnitude",
+        "effect"
+    ]
+}
