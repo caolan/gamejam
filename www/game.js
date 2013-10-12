@@ -71,7 +71,7 @@ ctx.imageSmoothingEnabled = false;
 
 var images = [
     {name: 'sun', url: 'img/bg1.png'},
-    {name: 'bg2', url: 'img/bg2.png'},
+    {name: 'farcloud', url: 'img/bg2.png'},
     {name: 'bg3', url: 'img/bg3.png'},
     {name: 'bg4', url: 'img/bg4.png'},
     {name: 'bg5', url: 'img/bg5.png'},
@@ -121,14 +121,19 @@ async.map(images, loadImage, function (err, images) {
             image: _.findWhere(images, {name: 'sun'}).image
         },
         {
-            name: 'bg2',
-            animate: function () {},
+            name: 'farcloud',
+            animate: function () {
+               this.x += 2;
+               if (this.x > ctx.canvas.width) {
+                   this.x = 0;
+               }
+            },
             x: 0,
             y: 0,
             z: 2,
             w: 1280,
             h: 720,
-            image: _.findWhere(images, {name: 'bg2'}).image
+            image: _.findWhere(images, {name: 'farcloud'}).image
         },
         {
             name: 'bg3',
