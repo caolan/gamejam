@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "God",
+    "description": "Attributes of gods",
+    "type": "object",
+    "properties": {
+        "summoning": {
+            "description": "Word to summon the god",
+            "type": "string"
+        },
+        "dismissal": {
+            "description": "Word to dismiss the god",
+            "type": "string"
+        },
+        "health": {
+            "description": "God is dismissed when this reduces to zero",
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMinimum": true
+        },
+        "spells": {
+            "description": "Spells that the god can cast",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "summoning",
+        "health",
+        "spells"
+    ]
+}
