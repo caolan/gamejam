@@ -98,7 +98,10 @@ var images = [
     {name: 'nearcloud', url: 'resources/environment/bg4.png'},
     {name: 'bg5', url: 'resources/environment/bg5.png'},
     {name: 'bg6', url: 'resources/environment/bg6.png'},
-    {name: 'talk', url: 'resources/sprites/display/talk.png'}
+    {name: 'talk', url: 'resources/sprites/display/talk.png'},
+    {name: 'helmet1', url: 'resources/sprites/helmet1.png'},
+    {name: 'spookyscaryskeleton1', url: 'resources/sprites/spookyscaryskeleton1.png'},
+    {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'}
 ];
 
 function loadImage(x, callback) {
@@ -206,6 +209,24 @@ async.map(images, loadImage, function (err, images) {
             y: 0,
             z: 6,
             image: scaleImage(getImage(images, 'bg5'), 2)
+        },
+        {
+            name: 'playerone',
+            health: 100,
+            animate: function () {},
+            x: 180,
+            y: 195,
+            z: 10,
+            image: scaleImage(getImage(images, 'helmet1'), 8)
+        },
+        {
+            name: 'playertwo',
+            health: 100,
+            animate: function () {},
+            x: 1280 - 180 - (24 * 8),
+            y: 195,
+            z: 10,
+            image: scaleImage(getImage(images, 'snakeguy1'), 8)
         }
     ];
 
