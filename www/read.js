@@ -6,7 +6,7 @@ function loadGods() {
 
 
 function loadSpells() {
-    return $.getJSON("resources/sprites/spells/fireball.json").then(function (data) {
+    return $.getJSON("resources/sprites/spells/spells.json").then(function (data) {
         return data;
     });
 }
