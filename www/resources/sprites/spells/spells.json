@@ -173,7 +173,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "song.png",
-      "startsound": "song.mp3",
+      "startsound": "song.wav",
       "endsound": ""
     },
     {
