@@ -4,6 +4,20 @@ function loadGods() {
     });
 }
 
+
+function loadSpells() {
+    return $.getJSON("resources/sprites/spells/fireball.json").then(function (data) {
+        return data;
+    });
+}
+
+
 loadGods().done(function (data) {
     console.log(data)
 });
+
+
+loadSpells().done(function (data) {
+    console.log(data)
+});
+
