@@ -543,9 +543,12 @@ function gameReady(images, spells) {
         removeSprite('talking');
     };
 
+    var recording_disabled = false;
+
     function clearPlayerSelect() {
         removeSprite('player1select');
         removeSprite('player2select');
+        recording_disabled = true;
     }
 
     function selectCurrentPlayer() {
@@ -556,6 +559,7 @@ function gameReady(images, spells) {
         else {
             sprites.push(player2select);
         }
+        recording_disabled = false;
     }
 
     document.onkeypress = function (ev) {
@@ -566,9 +570,14 @@ function gameReady(images, spells) {
                 speech.stop();
             }
             else {
+                if (recording_disabled) {
+                    // don't start listening for new spell yet
+                    return;
+                }
                 speech.listen(function (err, str) {
                     var cmd = parseCommand(str);
                     if (cmd[0] === 'spellcasting') {
+                        recording_disabled = true;
                         clearPlayerSelect();
                         var spell = _.findWhere(spells, {name: cmd[1]});
                         if (spell.startsound) {
@@ -584,6 +593,8 @@ function gameReady(images, spells) {
                                     nextplayer.health -= dmg;
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
+                                        $('#gameover-text #winner').text('Player ' + currentplayer.number + ' wins');
+                                        $('#gameover-text').show();
                                     }
                                     var tmpplayer = nextplayer;
                                     nextplayer = currentplayer;
