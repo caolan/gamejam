@@ -1,4 +1,6 @@
-var game = {};
+var game = {
+    state: 'title'
+};
 
 var commands = FuzzySet();
 commands.add('spellcasting');
@@ -389,6 +391,9 @@ function playerSprites(images, playerone, playertwo) {
             name: 'lifebarone',
             animate: function () {
                 var i = Math.max(24 - Math.floor((playerone.health/100) * 24), 0);
+                if (i > this.frames.length-1) {
+                    i = this.frames.length-1;
+                }
                 this.image = this.frames[i];
             },
             x: 50,
@@ -426,6 +431,9 @@ function playerSprites(images, playerone, playertwo) {
             name: 'lifebartwo',
             animate: function () {
                 var i = Math.max(23 - Math.floor((playertwo.health/100) * 23), 0);
+                if (i > this.frames.length-1) {
+                    i = this.frames.length-1;
+                }
                 this.image = this.frames[i];
             },
             x: 1280 - 50 - 256,
@@ -598,6 +606,9 @@ function gameReady(images, spells) {
         // spacebar
         if (ev.keyCode === 32) {
             ev.preventDefault();
+            if (game.state === 'finished') {
+                return window.location.reload(false);
+            }
             if (speech.recording) {
                 speech.stop();
             }
@@ -625,6 +636,8 @@ function gameReady(images, spells) {
                                     nextplayer.health -= dmg;
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
+                                        game.state = 'finished';
+                                        console.log('finished game');
                                         $('#gameover-text #winner').text('Player ' + currentplayer.number + ' wins');
                                         $('#gameover-text').show();
                                     }
@@ -670,7 +683,5 @@ function gameReady(images, spells) {
     animationLoop();
 
 }
-
-
 
 gameInit();
