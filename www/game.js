@@ -109,7 +109,9 @@ var images = [
     {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'},
     {name: 'lifebar', url: 'resources/sprites/display/lifebar.png'},
     {name: 'walrus', url: 'resources/sprites/spells/walrus.png'},
-    {name: 'chicken', url: 'resources/sprites/spells/chicken.png'}
+    {name: 'chicken', url: 'resources/sprites/spells/chicken.png'},
+    {name: 'player1select', url: 'resources/sprites/display/player1select.png'},
+    {name: 'player2select', url: 'resources/sprites/display/player2select.png'}
 ];
 
 function loadImage(x, callback) {
@@ -180,6 +182,7 @@ async.map(images, loadImage, function (err, images) {
     }
 
     var playerone = {
+        number: 1,
         top: 195,
         left: 180,
         fromx: 180,
@@ -188,6 +191,7 @@ async.map(images, loadImage, function (err, images) {
     };
 
     var playertwo = {
+        number: 2,
         top: 195,
         left: 1280 - 180 - (24 * 8),
         tox: 1280 - 180 - (24 * 6),
@@ -391,6 +395,22 @@ async.map(images, loadImage, function (err, images) {
         ]
     };
 
+    var player1select = {
+        name: 'player1select',
+        image: getImage(images, 'player1select'),
+        x: 0,
+        y: 0,
+        z: 11
+    };
+
+    var player2select = {
+        name: 'player2select',
+        image: getImage(images, 'player2select'),
+        x: 0,
+        y: 0,
+        z: 11
+    };
+
     window.sprites = sprites;
 
     speech.onstartrecording = function () {
@@ -402,6 +422,25 @@ async.map(images, loadImage, function (err, images) {
             return s.name !== 'talking';
         });
     };
+
+    function clearPlayerSelect() {
+        sprites = _.filter(sprites, function (s) {
+            return (
+                s.name !== 'player1select' &&
+                s.name !== 'player2select'
+            );
+        });
+    }
+
+    function selectCurrentPlayer() {
+        clearPlayerSelect();
+        if (currentplayer.number === 1) {
+            sprites.push(player1select);
+        }
+        else {
+            sprites.push(player2select);
+        }
+    }
 
     document.onkeypress = function (ev) {
         // spacebar
@@ -415,6 +454,7 @@ async.map(images, loadImage, function (err, images) {
                     var cmd = parseCommand(str);
                     console.log(cmd);
                     if (cmd[0] === 'spellcasting') {
+                        clearPlayerSelect();
                         sprites.push(
                             createSpellSprite(
                                 images, cmd[1],
@@ -428,6 +468,7 @@ async.map(images, loadImage, function (err, images) {
                                     var tmpplayer = nextplayer;
                                     nextplayer = currentplayer;
                                     currentplayer = tmpplayer;
+                                    selectCurrentPlayer();
                                 }
                             )
                         );
@@ -445,7 +486,9 @@ async.map(images, loadImage, function (err, images) {
             return !s.destroy;
         });
         sprites.forEach(function (s) {
-            s.animate();
+            if (s.animate) {
+                s.animate();
+            }
             ctx.drawImage(s.image, s.x, s.y);
             if (s.xr || s.yr) {
                 nx = s.xr?s.x - s.image.width * s.xr : s.x;
@@ -459,6 +502,7 @@ async.map(images, loadImage, function (err, images) {
         animationLoop();
     }, 1000/40);
 
+    selectCurrentPlayer();
     animationLoop();
 
 });
