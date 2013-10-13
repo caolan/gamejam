@@ -18,6 +18,8 @@ loadGods().done(function (data) {
 
 
 loadSpells().done(function (data) {
-    console.log(data)
+    var spells = [];
+    spells.push(data);
+    console.log(spells);
 });
 
