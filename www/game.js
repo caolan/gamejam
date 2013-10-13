@@ -154,6 +154,8 @@ async.map(images, loadImage, function (err, images) {
             z: 1,
             vx: 1,
             vy: -2,
+            xr: 0.0,
+            yr: 0.0,
             image: scaleImage(getImage(images, 'sun'), 2)
         },
         {
@@ -168,6 +170,8 @@ async.map(images, loadImage, function (err, images) {
             y: 0,
             z: 2,
             vx: 2,
+            xr: 1.0,
+            yr: 0.0,
             image: scaleImage(getImage(images, 'farcloud'), 2)
         },
         {
@@ -198,19 +202,8 @@ async.map(images, loadImage, function (err, images) {
             y: 0,
             z: 5,
             vx: 4,
-            image: scaleImage(getImage(images, 'nearcloud'), 2)
-        },
-        {
-            name: 'nearcloudoffset',
-            animate: function () {
-               this.x += 4;
-               if (this.x > 0) {
-                   this.x = -ctx.canvas.width;
-               }
-            },
-            x: -ctx.canvas.width,
-            y: 0,
-            z: 5,
+            xr: 1.0,
+            yr: 0.0,
             image: scaleImage(getImage(images, 'nearcloud'), 2)
         },
         {
@@ -298,6 +291,11 @@ async.map(images, loadImage, function (err, images) {
             s.animate();
             //ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
             ctx.drawImage(s.image, s.x, s.y);
+            if (s.xr || s.yr) {
+                nx = s.xr?s.x - s.image.width * s.xr : s.x;
+                ny = s.yr?s.y - s.image.height * s.yr : s.y;
+                ctx.drawImage(s.image, nx, ny);
+            }
         });
     }
 
