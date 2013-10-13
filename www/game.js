@@ -99,6 +99,7 @@ var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
+// TODO: title text is bg7
 var images = [
     {name: 'sun', url: 'resources/environment/bg1.png'},
     {name: 'farcloud', url: 'resources/environment/bg2.png'},
