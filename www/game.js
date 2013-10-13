@@ -5,7 +5,7 @@ commands.add('spellcasting');
 //commands.add('summoning');
 //commands.add('dismiss');
 
-var spells = FuzzySet();
+var spellset = FuzzySet();
 /*
 spells.add('arrow');
 spells.add('banana');
@@ -13,7 +13,7 @@ spells.add('bees');
 spells.add('brick');
 spells.add('chair');
 */
-spells.add('chicken');
+spellset.add('chicken');
 /*
 spells.add('fireball');
 spells.add('flower');
@@ -31,7 +31,7 @@ spells.add('song');
 spells.add('spanner');
 spells.add('swords');
 */
-spells.add('walrus');
+spellset.add('walrus');
 /*
 spells.add('water');
 */
@@ -56,7 +56,7 @@ function parseCommand(str) {
 
     var command = pickItem(commands, firstpair);
     if (command === 'spellcasting') {
-        return ['spellcasting', pickItem(spells, rest)];
+        return ['spellcasting', pickItem(spellset, rest)];
     }
     else if (command === 'summoning') {
         return ['summoning', pickItem(summons, rest)];
@@ -116,12 +116,26 @@ var images = [
 ];
 
 
-function loadSpells() {
-    return $.getJSON("resources/sprites/spells/spells.json").then(function (data) {
-        return data;
+function loadSpells(callback) {
+    return $.getJSON("resources/sprites/spells/spells.json", function (data) {
+        async.map(data.spells, loadSpellImage, function (err, spells) {
+            spells.forEach(function (spell) {
+                spellset.add(spell.name);
+            });
+            callback(err, spells);
+        });
     });
 }
 
+
+function loadSpellImage(spell, callback) {
+    var img = new Image();   // Create new img element
+    img.addEventListener("load", function() {
+        spell.image = img;
+        callback(null, spell);
+    }, false);
+    img.src = 'resources/sprites/spells/' + spell.image; // Set source path
+}
 
 function loadImage(x, callback) {
     var img = new Image();   // Create new img element
@@ -147,10 +161,14 @@ function getImage(images, name) {
     return _.findWhere(images, {name: name}).image;
 }
 
-function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
+function getSpellImage(spells, name) {
+    return _.findWhere(spells, {name: name}).image;
+}
+
+function createSpellSprite(spells, name, fromx, fromy, tox, toy, after) {
     return {
         name: name,
-        image: scaleImage(getImage(images, name), 4),
+        image: scaleImage(getSpellImage(spells, name), 4),
         x: fromx,
         y: fromy,
         after: after,
@@ -189,16 +207,15 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
 
 
 function gameInit() {
-    loadSpells().done(function (data) {
-        var spells = [];
-        spells.push(data);
-        console.log(spells);
-
+    loadSpells(function (err, spells)  {
+        if (err) {
+            return alert(err);
+        }
         async.map(images, loadImage, function (err, images) {
             if (err) {
                 return alert(err);
             }
-            gameReady(images);
+            gameReady(images, spells);
         });
     });
 }
@@ -417,7 +434,7 @@ function talkingSprite(images) {
 }
 
 
-function gameReady(images) {
+function gameReady(images, spells) {
 
     var playerone = {
         number: 1,
@@ -505,7 +522,7 @@ function gameReady(images) {
                         clearPlayerSelect();
                         sprites.push(
                             createSpellSprite(
-                                images, cmd[1],
+                                spells, cmd[1],
                                 currentplayer.fromx, currentplayer.top,
                                 nextplayer.tox, nextplayer.top,
                                 function after() {
