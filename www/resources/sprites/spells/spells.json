@@ -53,7 +53,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "chicken.png",
-      "startsound": "",
+      "startsound": "chicken.wav",
       "endsound": ""
     },
     {
