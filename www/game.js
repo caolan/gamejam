@@ -159,7 +159,7 @@ async.map(images, loadImage, function (err, images) {
         {
             name: 'farcloud',
             animate: function () {
-               this.x += 2;
+               this.x += this.vx * vscale;
                if (this.x > ctx.canvas.width) {
                    this.x = 0;
                }
@@ -167,6 +167,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 2,
+            vx: 2,
             image: scaleImage(getImage(images, 'farcloud'), 2)
         },
         {
@@ -188,7 +189,7 @@ async.map(images, loadImage, function (err, images) {
         {
             name: 'nearcloud',
             animate: function () {
-               this.x += 4;
+               this.x += this.vx * vscale;
                if (this.x > ctx.canvas.width) {
                    this.x = 0;
                }
@@ -196,6 +197,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 5,
+            vx: 4,
             image: scaleImage(getImage(images, 'nearcloud'), 2)
         },
         {
