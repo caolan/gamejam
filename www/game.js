@@ -655,7 +655,8 @@ function gameReady(images, spells) {
                                 currentplayer.fromx, currentplayer.top + 200,
                                 nextplayer.tox, nextplayer.top + 200,
                                 function after() {
-                                    var dmg = spell.magnitude;
+                                    var dmg = spell.magnitude * Math.random() * 3;
+                                    console.log("Damage:" + dmg);
                                     nextplayer.health -= dmg;
                                     if (spell.endsound) {
                                         spell.endsound.play();
