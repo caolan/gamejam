@@ -19,20 +19,31 @@
         font-size: 90%;
       }
       #gameover-text {
-        color: red;
+        color: black;
         position: absolute;
-        top: 360px;
-        left: 540px;
+        top: 600px;
+        left: 260px;
+        width: 880px;
+        text-align: left;
         font-size: 210%;
       }
-
+      #loading-text {
+        color: black;
+        position: absolute;
+        top: 360px;
+        left: 60px;
+        width: 1280px;
+        text-align: center;
+        font-size: 210%;
+      }
     </style>
   </head>
   <body>
     <center>
       <canvas width="1280" height="720" id="game"></canvas>
       <div class="speech-help">Press SPACEBAR to toggle casting</div>
-      <div id="gameover-text" style="display: None">
+      <div id="loading-text">Loading…</div>
+      <div id="gameover-text" style="display: none">
           <p id="gameover">Game Over</p>
           <p id="winner">Player 1 wins</p> 
       </div>

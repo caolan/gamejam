@@ -85,8 +85,13 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "hands.png",
+<<<<<<< HEAD
       "startsound": "hand.wav",
       "endsound": ""
+=======
+      "startsound": "",
+      "endsound": "woosh.wav"
+>>>>>>> 7e39fb28bb2b272ee43520a0cdbda78bbd39bb46
     },
     {
       "name": "ice",
