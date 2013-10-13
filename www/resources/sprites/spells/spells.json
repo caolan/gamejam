@@ -1,9 +1,20 @@
 {
-    "schema": "../spellschema.json",
-    "spellcasting": "fireball",
-    "magnitude": 10,
-    "effect": "hit",
-    "images": [
-        "fireball.png"
-        ]
+  "spells": [
+    {
+      "name": "chicken",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "chicken.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "walrus",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "walrus.png",
+      "startsound": "",
+      "endsound": ""
+    }
+  ]
 }
