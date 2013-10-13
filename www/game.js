@@ -179,34 +179,21 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
     };
 }
 
-async.map(images, loadImage, function (err, images) {
-    if (err) {
-        return alert(err);
-    }
 
-    var playerone = {
-        number: 1,
-        top: 195,
-        left: 180,
-        fromx: 180,
-        tox: 180 + (24 * 4),
-        health: 100
-    };
+function gameInit() {
+    async.map(images, loadImage, function (err, images) {
+        if (err) {
+            return alert(err);
+        }
+        gameReady(images);
+    });
+}
 
-    var playertwo = {
-        number: 2,
-        top: 195,
-        left: 1280 - 180 - (24 * 8),
-        tox: 1280 - 180 - (24 * 6),
-        fromx: 1280 - 180 - (24 * 4),
-        health: 100
-    };
 
-    var currentplayer = playerone;
-    var nextplayer = playertwo;
-
+function baseSprites(images) {
     var vscale = 0.1;
-    var sprites = [
+
+    return [
         {
             name: 'sun',
             animate: function () {
@@ -289,7 +276,12 @@ async.map(images, loadImage, function (err, images) {
             y: 0,
             z: 8,
             image: scaleImage(getImage(images, 'level_terrain'), 2)
-        },
+        }
+    ];
+}
+
+function playerSprites(images, playerone, playertwo) {
+    return [
         {
             name: 'playerone',
             animate: function () {},
@@ -381,8 +373,11 @@ async.map(images, loadImage, function (err, images) {
             ]
         }
     ];
+}
 
-    var talking = {
+
+function talkingSprite(images) {
+    return {
         name: 'talking',
         counter: 0,
         animate: function () {
@@ -405,6 +400,36 @@ async.map(images, loadImage, function (err, images) {
             cropImage(getImage(images, 'talk'), 123, 0, 123, 96)
         ]
     };
+}
+
+
+function gameReady(images) {
+
+    var playerone = {
+        number: 1,
+        top: 195,
+        left: 180,
+        fromx: 180,
+        tox: 180 + (24 * 4),
+        health: 100
+    };
+
+    var playertwo = {
+        number: 2,
+        top: 195,
+        left: 1280 - 180 - (24 * 8),
+        tox: 1280 - 180 - (24 * 6),
+        fromx: 1280 - 180 - (24 * 4),
+        health: 100
+    };
+
+    var currentplayer = playerone;
+    var nextplayer = playertwo;
+
+    var sprites = baseSprites(images);
+    sprites = sprites.concat(playerSprites(images, playerone, playertwo));
+
+    var talking = talkingSprite(images);
 
     var player1select = {
         name: 'player1select',
@@ -422,25 +447,23 @@ async.map(images, loadImage, function (err, images) {
         z: 11
     };
 
-    window.sprites = sprites;
+    function removeSprite(name) {
+        sprites = _.filter(sprites, function (s) {
+            return s.name !== name;
+        });
+    }
 
     speech.onstartrecording = function () {
         sprites.push(talking);
     };
 
     speech.onstoprecording = function () {
-        sprites = _.filter(sprites, function (s) {
-            return s.name !== 'talking';
-        });
+        removeSprite('talking');
     };
 
     function clearPlayerSelect() {
-        sprites = _.filter(sprites, function (s) {
-            return (
-                s.name !== 'player1select' &&
-                s.name !== 'player2select'
-            );
-        });
+        removeSprite('player1select');
+        removeSprite('player2select');
     }
 
     function selectCurrentPlayer() {
@@ -516,5 +539,8 @@ async.map(images, loadImage, function (err, images) {
     selectCurrentPlayer();
     animationLoop();
 
-});
+}
 
+
+
+gameInit();
