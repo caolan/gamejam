@@ -122,7 +122,10 @@ var images = [
 
 function loadSpells(callback) {
     return $.getJSON("resources/sprites/spells/spells.json", function (data) {
-        async.map(data.spells, loadSpellImage, function (err, spells) {
+        async.map(data.spells, loadSpell, function (err, spells) {
+            if (err) {
+                return alert(err);
+            }
             spells.forEach(function (spell) {
                 spellset.add(spell.name);
             });
@@ -131,6 +134,41 @@ function loadSpells(callback) {
     });
 }
 
+function loadSound(url, callback) {
+    var audio = document.createElement('audio');
+    $(audio).on('canplaythrough', function () {
+        callback(null, audio);
+    });
+    audio.src = url;
+    audio.load();
+}
+
+var loadSpell = function (spell, callback) {
+    loadSpellImage(spell, function (err, spell) {
+        if (err) {
+            return callback(err);
+        }
+        loadSpellSound(spell, function (err, spell) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(null, spell);
+        });
+    });
+};
+
+function loadSpellSound(spell, callback) {
+    if (spell.startsound) {
+        var url = 'resources/sprites/spells/' + spell.startsound;
+        loadSound(url, function (err, audio) {
+            spell.startsound = audio;
+            callback(null, spell);
+        });
+    }
+    else {
+        callback(null, spell);
+    }
+}
 
 function loadSpellImage(spell, callback) {
     var img = new Image();   // Create new img element
@@ -521,10 +559,12 @@ function gameReady(images, spells) {
             else {
                 speech.listen(function (err, str) {
                     var cmd = parseCommand(str);
-                    console.log(cmd);
                     if (cmd[0] === 'spellcasting') {
                         clearPlayerSelect();
                         var spell = _.findWhere(spells, {name: cmd[1]});
+                        if (spell.startsound) {
+                            spell.startsound.play();
+                        }
                         sprites.push(
                             createSpellSprite(
                                 spells, spell.name,
