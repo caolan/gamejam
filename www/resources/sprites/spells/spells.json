@@ -205,8 +205,8 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "water.png",
-      "startsound": "water.wav",
-      "endsound": ""
+      "startsound": "",
+      "endsound": "water.wav"
     }
   ]
 }
