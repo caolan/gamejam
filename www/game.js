@@ -182,14 +182,21 @@ async.map(images, loadImage, function (err, images) {
     var playerone = {
         top: 195,
         left: 180,
+        fromx: 180,
+        tox: 180 + (24 * 4),
         health: 100
     };
 
     var playertwo = {
         top: 195,
         left: 1280 - 180 - (24 * 8),
+        tox: 1280 - 180 - (24 * 6),
+        fromx: 1280 - 180 - (24 * 4),
         health: 100
     };
+
+    var currentplayer = playerone;
+    var nextplayer = playertwo;
 
     var vscale = 0.1;
     var sprites = [
@@ -411,13 +418,16 @@ async.map(images, loadImage, function (err, images) {
                         sprites.push(
                             createSpellSprite(
                                 images, cmd[1],
-                                playerone.left, playerone.top,
-                                playertwo.left, playertwo.top,
+                                currentplayer.fromx, currentplayer.top,
+                                nextplayer.tox, nextplayer.top,
                                 function after() {
-                                    playertwo.health -= 10;
-                                    if (playertwo.health < 0) {
-                                        playertwo.health = 0;
+                                    nextplayer.health -= 10;
+                                    if (nextplayer.health < 0) {
+                                        nextplayer.health = 0;
                                     }
+                                    var tmpplayer = nextplayer;
+                                    nextplayer = currentplayer;
+                                    currentplayer = tmpplayer;
                                 }
                             )
                         );
