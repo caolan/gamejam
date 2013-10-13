@@ -207,7 +207,17 @@ function getSpellImage(spells, name) {
     return _.findWhere(spells, {name: name}).image;
 }
 
+function getVelocity(spell, fromx, tox) {
+    var frames = spell.startsound.duration / 25 * 1000
+    var distance = Math.abs(tox - fromx)
+    var v = distance/frames
+    return v
+}
+
 function createSpellSprite(spells, name, fromx, fromy, tox, toy, after) {
+
+    var spell = _.findWhere(spells, {name:name})
+    var v = getVelocity(spell, fromx, tox);
     return {
         name: name,
         image: scaleImage(getSpellImage(spells, name), 4),
@@ -215,7 +225,6 @@ function createSpellSprite(spells, name, fromx, fromy, tox, toy, after) {
         y: fromy,
         after: after,
         animate: function () {
-            var v = 20;
             var offset = 40;
             if (this.x === tox && this.y === toy) {
                 this.destroy = true;
