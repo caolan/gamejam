@@ -37,16 +37,16 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "brick.png",
-      "startsound": "",
-      "endsound": "woosh.wav"
+      "startsound": "woosh.wav",
+      "endsound": ""
     },
     {
       "name": "chair",
       "magnitude": 10,
       "effect": "hit",
       "image": "chair.png",
-      "startsound": "",
-      "endsound": "woosh.wav"
+      "startsound": "woosh.wav",
+      "endsound": ""
     },
     {
       "name": "chicken",
