@@ -61,7 +61,7 @@
       "magnitude": 20,
       "effect": "hit",
       "image": "fireball.png",
-      "startsound": "",
+      "startsound": "fireball.wav",
       "endsound": ""
     },
     {
@@ -133,7 +133,7 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "penguin.png",
-      "startsound": "",
+      "startsound": "penguin.wav",
       "endsound": ""
     },
     {
@@ -149,7 +149,7 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "sheep.png",
-      "startsound": "",
+      "startsound": "sheep.wav",
       "endsound": ""
     },
     {
@@ -165,7 +165,7 @@
       "magnitude": 12,
       "effect": "hit",
       "image": "snakes.png",
-      "startsound": "",
+      "startsound": "snake.wav",
       "endsound": ""
     },
     {
@@ -173,7 +173,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "song.png",
-      "startsound": "",
+      "startsound": "song.mp3",
       "endsound": ""
     },
     {
