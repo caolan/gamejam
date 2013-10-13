@@ -6,7 +6,7 @@
       "effect": "hit",
       "image": "arrows.png",
       "startsound": "arrows.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "banana",
@@ -38,7 +38,7 @@
       "effect": "hit",
       "image": "brick.png",
       "startsound": "woosh.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "chair",
@@ -46,7 +46,7 @@
       "effect": "hit",
       "image": "chair.png",
       "startsound": "woosh.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "chicken",
@@ -62,7 +62,7 @@
       "effect": "hit",
       "image": "fireball.png",
       "startsound": "fireball.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "flower",
@@ -102,7 +102,7 @@
       "effect": "hit",
       "image": "iron.png",
       "startsound": "woosh.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "moose",
@@ -142,7 +142,7 @@
       "effect": "hit",
       "image": "plantpot.png",
       "startsound": "woosh.wav",
-      "endsound": ""
+      "endsound": "ouch.wav"
     },
     {
       "name": "sheep",
