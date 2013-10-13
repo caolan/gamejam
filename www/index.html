@@ -31,6 +31,15 @@
         top: 560px;
       }
       #loading-text {
+        color: black;
+        position: absolute;
+        top: 360px;
+        left: 0px;
+        width: 1280px;
+        text-align: center;
+        font-size: 210%;
+      }
+      #intro {
         width: 1280px;
         height: 720px;
         top: 0;
@@ -50,7 +59,8 @@
     <div style="position: relative; width: 1280px; height: 720px; margin: 0 auto;">
       <canvas width="1280" height="720" id="game"></canvas>
       <div class="speech-help">Press SPACEBAR to toggle casting</div>
-      <div id="loading-text">
+      <div id="loading-text">Loading…</div>
+      <div id="intro" style="display: none">
         <img src="resources/environment/intro.png" />
       </div>
       <div id="gameover-text" style="display: none">
