@@ -1,6 +1,54 @@
 {
   "spells": [
     {
+      "name": "arrows",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "arrows.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "banana",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "banana.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "bear",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "bear.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "bees",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "bees.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "brick",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "brick.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "chair",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "chair.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
       "name": "chicken",
       "magnitude": 10,
       "effect": "hit",
@@ -9,10 +57,146 @@
       "endsound": ""
     },
     {
+      "name": "fireball",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "fireball.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "flower",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "flower.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "ham",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "ham.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "hands",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "hands.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "ice",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "ice.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "iron",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "iron.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "moose",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "moose.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "nuke",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "nuke.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "octopus",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "octopus.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "plantpot",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "plantpot.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "sheep",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "sheep.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "shoelaces",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "shoelaces.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "snakes",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "snakes.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "song",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "song.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "spanner",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "spanner.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "swords",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "swords.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
       "name": "walrus",
       "magnitude": 10,
       "effect": "hit",
       "images": "walrus.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
+      "name": "water",
+      "magnitude": 10,
+      "effect": "hit",
+      "images": "water.png",
       "startsound": "",
       "endsound": ""
     }
