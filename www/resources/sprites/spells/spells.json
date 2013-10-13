@@ -173,7 +173,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "song.png",
-      "startsound": "song.mp3",
+      "startsound": "song.wav",
       "endsound": ""
     },
     {
@@ -181,8 +181,8 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "spanner.png",
-      "startsound": "spanner.wav",
-      "endsound": ""
+      "startsound": "woosh.wav",
+      "endsound": "spanner.wav"
     },
     {
       "name": "swords",
