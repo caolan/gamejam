@@ -51,19 +51,22 @@ function pickItem(set, str) {
 
 function parseCommand(str) {
     console.log(['parseCommand', str]);
-    var firstpair = str.split(' ').slice(0, 2).join(' ');
-    var rest = str.split(' ').slice(1).join(' ');
+    //var firstpair = str.split(' ').slice(0, 2).join(' ');
+    //var rest = str.split(' ').slice(1).join(' ');
 
-    var command = pickItem(commands, firstpair);
-    if (command === 'spellcasting') {
-        return ['spellcasting', pickItem(spellset, rest)];
-    }
-    else if (command === 'summoning') {
-        return ['summoning', pickItem(summons, rest)];
-    }
-    else {
-        return [command];
-    }
+    var words = str.split(' ');
+    var last_word = words[words.length-1];
+
+    //var command = pickItem(commands, firstpair);
+    //if (command === 'spellcasting') {
+        return ['spellcasting', pickItem(spellset, last_word)];
+    //}
+    //else if (command === 'summoning') {
+    //    return ['summoning', pickItem(summons, rest)];
+    //}
+    //else {
+    //    return [command];
+    //}
 }
 
 function cropImage(img, x, y, w, h) {
@@ -96,6 +99,7 @@ var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
+// TODO: title text is bg7
 var images = [
     {name: 'sun', url: 'resources/environment/bg1.png'},
     {name: 'farcloud', url: 'resources/environment/bg2.png'},
