@@ -55,6 +55,9 @@ function cropImage(img, x, y, w, h) {
 }
 
 function scaleImage(img, ratio) {
+    if (!ratio) {
+        throw new Error('scaleImage with invalid ratio: ' + ratio);
+    }
     var c = document.createElement('canvas');
     var w = img.width * ratio;
     var h = img.height * ratio;
@@ -101,7 +104,8 @@ var images = [
     {name: 'talk', url: 'resources/sprites/display/talk.png'},
     {name: 'helmet1', url: 'resources/sprites/helmet1.png'},
     {name: 'spookyscaryskeleton1', url: 'resources/sprites/spookyscaryskeleton1.png'},
-    {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'}
+    {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'},
+    {name: 'lifebar', url: 'resources/sprites/display/lifebar.png'}
 ];
 
 function loadImage(x, callback) {
@@ -217,7 +221,6 @@ async.map(images, loadImage, function (err, images) {
         },
         {
             name: 'playerone',
-            health: 100,
             animate: function () {},
             x: 180,
             y: 195,
@@ -226,12 +229,27 @@ async.map(images, loadImage, function (err, images) {
         },
         {
             name: 'playertwo',
-            health: 100,
             animate: function () {},
             x: 1280 - 180 - (24 * 8),
             y: 195,
             z: 10,
             image: scaleImage(getImage(images, 'snakeguy1'), 8)
+        },
+        {
+            name: 'lifebarone',
+            animate: function () {},
+            x: 50,
+            y: 20,
+            z: 20,
+            image: cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64)
+        },
+        {
+            name: 'lifebartwo',
+            animate: function () {},
+            x: 1280 - 50 - 256,
+            y: 20,
+            z: 20,
+            image: cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64)
         }
     ];
 
