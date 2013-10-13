@@ -520,13 +520,15 @@ function gameReady(images, spells) {
                     console.log(cmd);
                     if (cmd[0] === 'spellcasting') {
                         clearPlayerSelect();
+                        var spell = _.findWhere(spells, {name: cmd[1]});
                         sprites.push(
                             createSpellSprite(
-                                spells, cmd[1],
+                                spells, spell.name,
                                 currentplayer.fromx, currentplayer.top,
                                 nextplayer.tox, nextplayer.top,
                                 function after() {
-                                    nextplayer.health -= 10;
+                                    var dmg = spell.magnitude;
+                                    nextplayer.health -= dmg;
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
                                     }

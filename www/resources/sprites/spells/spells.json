@@ -10,7 +10,7 @@
     },
     {
       "name": "banana",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "banana.png",
       "startsound": "",
@@ -18,7 +18,7 @@
     },
     {
       "name": "bear",
-      "magnitude": 10,
+      "magnitude": 20,
       "effect": "hit",
       "image": "bear.png",
       "startsound": "",
@@ -26,7 +26,7 @@
     },
     {
       "name": "bees",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "bees.png",
       "startsound": "",
@@ -34,7 +34,7 @@
     },
     {
       "name": "brick",
-      "magnitude": 10,
+      "magnitude": 15,
       "effect": "hit",
       "image": "brick.png",
       "startsound": "",
@@ -50,7 +50,7 @@
     },
     {
       "name": "chicken",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "chicken.png",
       "startsound": "",
@@ -58,7 +58,7 @@
     },
     {
       "name": "fireball",
-      "magnitude": 10,
+      "magnitude": 20,
       "effect": "hit",
       "image": "fireball.png",
       "startsound": "",
@@ -66,7 +66,7 @@
     },
     {
       "name": "flower",
-      "magnitude": 10,
+      "magnitude": 2,
       "effect": "hit",
       "image": "flower.png",
       "startsound": "",
@@ -74,7 +74,7 @@
     },
     {
       "name": "ham",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "ham.png",
       "startsound": "",
@@ -82,7 +82,7 @@
     },
     {
       "name": "hands",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "hands.png",
       "startsound": "",
@@ -90,7 +90,7 @@
     },
     {
       "name": "ice",
-      "magnitude": 10,
+      "magnitude": 20,
       "effect": "hit",
       "image": "ice.png",
       "startsound": "",
@@ -98,7 +98,7 @@
     },
     {
       "name": "iron",
-      "magnitude": 10,
+      "magnitude": 15,
       "effect": "hit",
       "image": "iron.png",
       "startsound": "",
@@ -106,7 +106,7 @@
     },
     {
       "name": "moose",
-      "magnitude": 10,
+      "magnitude": 20,
       "effect": "hit",
       "image": "moose.png",
       "startsound": "",
@@ -114,7 +114,7 @@
     },
     {
       "name": "nuke",
-      "magnitude": 10,
+      "magnitude": 30,
       "effect": "hit",
       "image": "nuke.png",
       "startsound": "",
@@ -130,7 +130,7 @@
     },
     {
       "name": "plantpot",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "plantpot.png",
       "startsound": "",
@@ -146,7 +146,7 @@
     },
     {
       "name": "shoelaces",
-      "magnitude": 10,
+      "magnitude": 1,
       "effect": "hit",
       "image": "shoelaces.png",
       "startsound": "",
@@ -154,7 +154,7 @@
     },
     {
       "name": "snakes",
-      "magnitude": 10,
+      "magnitude": 12,
       "effect": "hit",
       "image": "snakes.png",
       "startsound": "",
@@ -162,7 +162,7 @@
     },
     {
       "name": "song",
-      "magnitude": 10,
+      "magnitude": 5,
       "effect": "hit",
       "image": "song.png",
       "startsound": "",
@@ -178,7 +178,7 @@
     },
     {
       "name": "swords",
-      "magnitude": 10,
+      "magnitude": 15,
       "effect": "hit",
       "image": "swords.png",
       "startsound": "",
@@ -186,7 +186,7 @@
     },
     {
       "name": "walrus",
-      "magnitude": 10,
+      "magnitude": 20,
       "effect": "hit",
       "image": "walrus.png",
       "startsound": "",
@@ -194,7 +194,7 @@
     },
     {
       "name": "water",
-      "magnitude": 10,
+      "magnitude": 15,
       "effect": "hit",
       "image": "water.png",
       "startsound": "",
