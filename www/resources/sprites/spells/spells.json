@@ -4,7 +4,7 @@
       "name": "arrows",
       "magnitude": 10,
       "effect": "hit",
-      "images": "arrows.png",
+      "image": "arrows.png",
       "startsound": "",
       "endsound": ""
     },
@@ -12,7 +12,7 @@
       "name": "banana",
       "magnitude": 10,
       "effect": "hit",
-      "images": "banana.png",
+      "image": "banana.png",
       "startsound": "",
       "endsound": ""
     },
@@ -20,7 +20,7 @@
       "name": "bear",
       "magnitude": 10,
       "effect": "hit",
-      "images": "bear.png",
+      "image": "bear.png",
       "startsound": "",
       "endsound": ""
     },
@@ -28,7 +28,7 @@
       "name": "bees",
       "magnitude": 10,
       "effect": "hit",
-      "images": "bees.png",
+      "image": "bees.png",
       "startsound": "",
       "endsound": ""
     },
@@ -36,7 +36,7 @@
       "name": "brick",
       "magnitude": 10,
       "effect": "hit",
-      "images": "brick.png",
+      "image": "brick.png",
       "startsound": "",
       "endsound": ""
     },
@@ -44,7 +44,7 @@
       "name": "chair",
       "magnitude": 10,
       "effect": "hit",
-      "images": "chair.png",
+      "image": "chair.png",
       "startsound": "",
       "endsound": ""
     },
@@ -52,7 +52,7 @@
       "name": "chicken",
       "magnitude": 10,
       "effect": "hit",
-      "images": "chicken.png",
+      "image": "chicken.png",
       "startsound": "",
       "endsound": ""
     },
@@ -60,7 +60,7 @@
       "name": "fireball",
       "magnitude": 10,
       "effect": "hit",
-      "images": "fireball.png",
+      "image": "fireball.png",
       "startsound": "",
       "endsound": ""
     },
@@ -68,7 +68,7 @@
       "name": "flower",
       "magnitude": 10,
       "effect": "hit",
-      "images": "flower.png",
+      "image": "flower.png",
       "startsound": "",
       "endsound": ""
     },
@@ -76,7 +76,7 @@
       "name": "ham",
       "magnitude": 10,
       "effect": "hit",
-      "images": "ham.png",
+      "image": "ham.png",
       "startsound": "",
       "endsound": ""
     },
@@ -84,7 +84,7 @@
       "name": "hands",
       "magnitude": 10,
       "effect": "hit",
-      "images": "hands.png",
+      "image": "hands.png",
       "startsound": "",
       "endsound": ""
     },
@@ -92,7 +92,7 @@
       "name": "ice",
       "magnitude": 10,
       "effect": "hit",
-      "images": "ice.png",
+      "image": "ice.png",
       "startsound": "",
       "endsound": ""
     },
@@ -100,7 +100,7 @@
       "name": "iron",
       "magnitude": 10,
       "effect": "hit",
-      "images": "iron.png",
+      "image": "iron.png",
       "startsound": "",
       "endsound": ""
     },
@@ -108,7 +108,7 @@
       "name": "moose",
       "magnitude": 10,
       "effect": "hit",
-      "images": "moose.png",
+      "image": "moose.png",
       "startsound": "",
       "endsound": ""
     },
@@ -116,7 +116,7 @@
       "name": "nuke",
       "magnitude": 10,
       "effect": "hit",
-      "images": "nuke.png",
+      "image": "nuke.png",
       "startsound": "",
       "endsound": ""
     },
@@ -124,7 +124,7 @@
       "name": "octopus",
       "magnitude": 10,
       "effect": "hit",
-      "images": "octopus.png",
+      "image": "octopus.png",
       "startsound": "",
       "endsound": ""
     },
@@ -132,7 +132,7 @@
       "name": "plantpot",
       "magnitude": 10,
       "effect": "hit",
-      "images": "plantpot.png",
+      "image": "plantpot.png",
       "startsound": "",
       "endsound": ""
     },
@@ -140,7 +140,7 @@
       "name": "sheep",
       "magnitude": 10,
       "effect": "hit",
-      "images": "sheep.png",
+      "image": "sheep.png",
       "startsound": "",
       "endsound": ""
     },
@@ -148,7 +148,7 @@
       "name": "shoelaces",
       "magnitude": 10,
       "effect": "hit",
-      "images": "shoelaces.png",
+      "image": "shoelaces.png",
       "startsound": "",
       "endsound": ""
     },
@@ -156,7 +156,7 @@
       "name": "snakes",
       "magnitude": 10,
       "effect": "hit",
-      "images": "snakes.png",
+      "image": "snakes.png",
       "startsound": "",
       "endsound": ""
     },
@@ -164,7 +164,7 @@
       "name": "song",
       "magnitude": 10,
       "effect": "hit",
-      "images": "song.png",
+      "image": "song.png",
       "startsound": "",
       "endsound": ""
     },
@@ -172,7 +172,7 @@
       "name": "spanner",
       "magnitude": 10,
       "effect": "hit",
-      "images": "spanner.png",
+      "image": "spanner.png",
       "startsound": "",
       "endsound": ""
     },
@@ -180,7 +180,7 @@
       "name": "swords",
       "magnitude": 10,
       "effect": "hit",
-      "images": "swords.png",
+      "image": "swords.png",
       "startsound": "",
       "endsound": ""
     },
@@ -188,7 +188,7 @@
       "name": "walrus",
       "magnitude": 10,
       "effect": "hit",
-      "images": "walrus.png",
+      "image": "walrus.png",
       "startsound": "",
       "endsound": ""
     },
@@ -196,7 +196,7 @@
       "name": "water",
       "magnitude": 10,
       "effect": "hit",
-      "images": "water.png",
+      "image": "water.png",
       "startsound": "",
       "endsound": ""
     }
