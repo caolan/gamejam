@@ -5,7 +5,7 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "arrows.png",
-      "startsound": "",
+      "startsound": "arrows.wav",
       "endsound": ""
     },
     {
@@ -21,7 +21,7 @@
       "magnitude": 20,
       "effect": "hit",
       "image": "bear.png",
-      "startsound": "",
+      "startsound": "bear.wav",
       "endsound": ""
     },
     {
@@ -85,7 +85,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "hands.png",
-      "startsound": "",
+      "startsound": "hand.wav",
       "endsound": ""
     },
     {
@@ -93,7 +93,7 @@
       "magnitude": 20,
       "effect": "hit",
       "image": "ice.png",
-      "startsound": "",
+      "startsound": "ice.wav",
       "endsound": ""
     },
     {
@@ -109,7 +109,7 @@
       "magnitude": 20,
       "effect": "hit",
       "image": "moose.png",
-      "startsound": "",
+      "startsound": "moose.wav",
       "endsound": ""
     },
     {
@@ -117,7 +117,7 @@
       "magnitude": 90,
       "effect": "hit",
       "image": "nuke.png",
-      "startsound": "",
+      "startsound": "nuke.wav",
       "endsound": ""
     },
     {
@@ -125,7 +125,7 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "octopus.png",
-      "startsound": "",
+      "startsound": "octopus.png",
       "endsound": ""
     },
     {
@@ -181,7 +181,7 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "spanner.png",
-      "startsound": "",
+      "startsound": "spanner.wav",
       "endsound": ""
     },
     {
@@ -189,7 +189,7 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "swords.png",
-      "startsound": "",
+      "startsound": "swords.wav",
       "endsound": ""
     },
     {
@@ -197,7 +197,7 @@
       "magnitude": 20,
       "effect": "hit",
       "image": "walrus.png",
-      "startsound": "",
+      "startsound": "walrus.wav",
       "endsound": ""
     },
     {
@@ -205,7 +205,7 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "water.png",
-      "startsound": "",
+      "startsound": "water.wav",
       "endsound": ""
     }
   ]
