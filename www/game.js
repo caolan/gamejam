@@ -505,6 +505,8 @@ function talkingSprite(images) {
 
 function gameReady(images, spells) {
 
+    $('#loading-text').hide();
+
     var playerone = {
         number: 1,
         top: 195,
