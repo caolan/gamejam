@@ -85,7 +85,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "hands.png",
-      "startsound": "hand.wav",
+      "startsound": "hand.aif",
       "endsound": "woosh.wav"
     },
     {
