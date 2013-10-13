@@ -1,19 +1,28 @@
 <html>
   <head>
     <title>GameJam</title>
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css' />
     <style>
       body {
         background-color: black;
         padding-top: 30px;
+        font-family: 'Press Start 2P', cursive;
+        color: white;
       }
       #game {
         background: #dafeff;
+      }
+      .speech-help {
+        position: absolute;
+        top: 710px;
+        left: 120px;
       }
     </style>
   </head>
   <body>
     <center>
       <canvas width="1280" height="720" id="game"></canvas>
+      <div class="speech-help">Press SPACEBAR to speek</div>
     </center>
     <script src="underscore-min.js"></script>
     <script src="fuzzyset.js"></script>
