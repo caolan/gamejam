@@ -86,7 +86,7 @@
       "effect": "hit",
       "image": "hands.png",
       "startsound": "",
-      "endsound": ""
+      "endsound": "woosh.wav"
     },
     {
       "name": "ice",

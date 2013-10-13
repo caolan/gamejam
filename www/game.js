@@ -164,12 +164,15 @@ function loadSpellSound(spell, callback) {
         var url = 'resources/sprites/spells/' + spell.startsound;
         loadSound(url, function (err, audio) {
             spell.startsound = audio;
-            callback(null, spell);
         });
     }
-    else {
-        callback(null, spell);
+    if (spell.endsound) {
+        var url = 'resources/sprites/spells/' + spell.endsound;
+        loadSound(url, function (err, audio) {
+            spell.endsound = audio;
+        });
     }
+    callback(null, spell);
 }
 
 function loadSpellImage(spell, callback) {
@@ -634,6 +637,9 @@ function gameReady(images, spells) {
                                 function after() {
                                     var dmg = spell.magnitude;
                                     nextplayer.health -= dmg;
+                                    if (spell.endsound) {
+                                        spell.endsound.play();
+                                    }
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
                                         game.state = 'finished';
