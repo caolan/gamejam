@@ -189,11 +189,17 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
 
 
 function gameInit() {
-    async.map(images, loadImage, function (err, images) {
-        if (err) {
-            return alert(err);
-        }
-        gameReady(images);
+    loadSpells().done(function (data) {
+        var spells = [];
+        spells.push(data);
+        console.log(spells);
+
+        async.map(images, loadImage, function (err, images) {
+            if (err) {
+                return alert(err);
+            }
+            gameReady(images);
+        });
     });
 }
 
