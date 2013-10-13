@@ -210,10 +210,15 @@ async.map(images, loadImage, function (err, images) {
         name: 'talking',
         counter: 0,
         animate: function () {
-            this.image = this.frames[Math.floor(this.counter/10)];
-            this.counter++;
-            if (this.counter >= 20) {
-                this.counter = 0;
+            if (speech.speech_detected) {
+                this.image = this.frames[Math.floor(this.counter/10)];
+                this.counter++;
+                if (this.counter >= 20) {
+                    this.counter = 0;
+                }
+            }
+            else {
+                this.image = this.frames[0];
             }
         },
         x: 0,

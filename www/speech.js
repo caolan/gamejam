@@ -19,6 +19,7 @@ speech.listen = function (callback) {
     };
     speech.recognition.onspeechstart = function () {
         console.log('speech start');
+        speech.speech_detected = true;
     };
     speech.recognition.onspeechend = function () {
         console.log('speech end');
@@ -34,6 +35,7 @@ speech.listen = function (callback) {
         console.log('error');
     };
     speech.recognition.onend = function() {
+        speech.speech_detected = false;
         speech.recording = false;
         if (speech.onstoprecording) {
             speech.onstoprecording();
