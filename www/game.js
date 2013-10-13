@@ -146,6 +146,8 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
         y: fromy,
         after: after,
         animate: function () {
+            var v = 20;
+            var offset = 40;
             if (this.x === tox && this.y === toy) {
                 this.destroy = true;
                 if (this.after) {
@@ -153,20 +155,20 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
                 }
             }
             else {
-                if (this.x <= (tox/40)*39) {
-                    this.x += (tox/40)
+                if (this.x <= tox - offset) {
+                    this.x += v;
                 }
-                else if (this.x >= tox + (tox/40)) {
-                    this.x -= (tox/40)
+                else if (this.x >= tox + offset) {
+                    this.x -= v;
                 }
                 else {
                     this.x = tox;
                 }
-                if (this.y < (toy/40)*39) {
-                    this.y += (toy/40)
+                if (this.y < toy - offset) {
+                    this.y += v;
                 }
-                else if (this.y >= toy + (toy/40)) {
-                    this.y -= (toy/40)
+                else if (this.y >= toy + offset) {
+                    this.y -= v;
                 }
                 else {
                     this.y = toy;
