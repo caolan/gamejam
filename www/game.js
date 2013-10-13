@@ -521,17 +521,35 @@ function gameReady(images, spells) {
     var player1select = {
         name: 'player1select',
         image: getImage(images, 'player1select'),
+        animate: function () {
+           this.y += this.vy * 1;
+           if (this.y > ctx.canvas.height) {
+               this.y = 0;
+           }
+        },
         x: 0,
         y: 0,
-        z: 6
+        z: 6,
+        vy: 2,
+        xr: 0.0,
+        yr: 1.0,
     };
 
     var player2select = {
         name: 'player2select',
         image: getImage(images, 'player2select'),
+        animate: function () {
+           this.y += this.vy * 1;
+           if (this.y > ctx.canvas.height) {
+               this.y = 0;
+           }
+        },
         x: 0,
         y: 0,
-        z: 6
+        z: 6,
+        vy: 2,
+        xr: 0.0,
+        yr: 1.0,
     };
 
     function removeSprite(name) {
