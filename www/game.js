@@ -105,7 +105,8 @@ var images = [
     {name: 'helmet1', url: 'resources/sprites/helmet1.png'},
     {name: 'spookyscaryskeleton1', url: 'resources/sprites/spookyscaryskeleton1.png'},
     {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'},
-    {name: 'lifebar', url: 'resources/sprites/display/lifebar.png'}
+    {name: 'lifebar', url: 'resources/sprites/display/lifebar.png'},
+    {name: 'walrus', url: 'resources/sprites/spells/walrus.png'}
 ];
 
 function loadImage(x, callback) {
@@ -132,10 +133,56 @@ function getImage(images, name) {
     return _.findWhere(images, {name: name}).image;
 }
 
+function createSpellSprite(images, name, fromx, fromy, tox, toy) {
+    return {
+        name: name,
+        image: scaleImage(getImage(images, name), 4),
+        x: fromx,
+        y: fromy,
+        animate: function () {
+            if (this.x === tox && this.y === toy) {
+                this.destroy = true;
+            }
+            else {
+                if (this.x <= (tox/20)*19) {
+                    this.x += (tox/20)
+                }
+                else if (this.x >= tox + (tox/20)) {
+                    this.x -= (tox/20)
+                }
+                else {
+                    this.x = tox;
+                }
+                if (this.y < (toy/20)*19) {
+                    this.y += (toy/20)
+                }
+                else if (this.y >= toy + (toy/20)) {
+                    this.y -= (toy/20)
+                }
+                else {
+                    this.y = toy;
+                }
+            }
+        }
+    };
+}
+
 async.map(images, loadImage, function (err, images) {
     if (err) {
         return alert(err);
     }
+
+    var playerone = {
+        top: 195,
+        left: 180,
+        health: 100
+    };
+
+    var playertwo = {
+        top: 195,
+        left: 1280 - 180 - (24 * 8),
+        health: 100
+    };
 
     var vscale = 0.1;
     var sprites = [
@@ -217,16 +264,16 @@ async.map(images, loadImage, function (err, images) {
         {
             name: 'playerone',
             animate: function () {},
-            x: 180,
-            y: 195,
+            x: playerone.top,
+            y: playerone.left,
             z: 10,
             image: scaleImage(getImage(images, 'helmet1'), 8)
         },
         {
             name: 'playertwo',
             animate: function () {},
-            x: 1280 - 180 - (24 * 8),
-            y: 195,
+            x: playertwo.left,
+            y: playertwo.top,
             z: 10,
             image: scaleImage(getImage(images, 'snakeguy1'), 8)
         },
@@ -282,11 +329,21 @@ async.map(images, loadImage, function (err, images) {
         sprites = _.filter(sprites, function (s) {
             return s.name !== 'talking';
         });
+        sprites.push(
+            createSpellSprite(
+                images, 'walrus',
+                playerone.left, playerone.top,
+                playertwo.left, playertwo.top
+            )
+        );
     };
 
     function animationLoop() {
         clear(ctx);
         sprites = _.sortBy(sprites, 'z');
+        sprites = _.filter(sprites, function (s) {
+            return !s.destroy;
+        });
         sprites.forEach(function (s) {
             s.animate();
             //ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
