@@ -208,10 +208,15 @@ function getSpellImage(spells, name) {
 }
 
 function getVelocity(spell, fromx, tox) {
-    var frames = spell.startsound.duration / 25 * 1000
-    var distance = Math.abs(tox - fromx)
-    var v = distance/frames
-    return v
+    if (spell.startsound) {
+        var frames = spell.startsound.duration / 25 * 1000
+        var distance = Math.abs(tox - fromx)
+        var v = distance/frames
+        return v
+    }
+    else {
+        return 10
+    }
 }
 
 function createSpellSprite(spells, name, fromx, fromy, tox, toy, after) {
