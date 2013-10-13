@@ -1,5 +1,5 @@
 var game = {
-    state: 'title'
+    state: 'intro'
 };
 
 var commands = FuzzySet();
@@ -506,6 +506,7 @@ function talkingSprite(images) {
 function gameReady(images, spells) {
 
     $('#loading-text').hide();
+    $('#intro').show();
 
     var playerone = {
         number: 1,
@@ -629,13 +630,20 @@ function gameReady(images, spells) {
         // spacebar
         if (ev.keyCode === 32) {
             ev.preventDefault();
-            if (game.state === 'finished') {
-                $('#credits').show();
-                game.state === 'credits';
+            if (game.state === 'intro') {
+                $('#intro').hide();
+                game.state = 'playing';
+                return;
             }
-            if (game.state === 'credits') {
+            else if (game.state === 'finished') {
+                $('#credits').show();
+                game.state = 'credits';
+                return;
+            }
+            else if (game.state === 'credits') {
                 return window.location.reload(false);
             }
+
             if (speech.recording) {
                 speech.stop();
             }
