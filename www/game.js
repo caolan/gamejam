@@ -301,7 +301,7 @@ function playerSprites(images, playerone, playertwo) {
             animate: function () {},
             x: playerone.top,
             y: playerone.left,
-            z: 6,
+            z: 7,
             image: scaleImage(getImage(images, 'helmet1'), 8)
         },
         {
@@ -309,7 +309,7 @@ function playerSprites(images, playerone, playertwo) {
             animate: function () {},
             x: playertwo.left,
             y: playertwo.top,
-            z: 6,
+            z: 7,
             image: scaleImage(getImage(images, 'snakeguy1'), 8)
         },
         {
@@ -450,7 +450,7 @@ function gameReady(images) {
         image: getImage(images, 'player1select'),
         x: 0,
         y: 0,
-        z: 7
+        z: 6
     };
 
     var player2select = {
@@ -458,7 +458,7 @@ function gameReady(images) {
         image: getImage(images, 'player2select'),
         x: 0,
         y: 0,
-        z: 7
+        z: 6
     };
 
     function removeSprite(name) {
