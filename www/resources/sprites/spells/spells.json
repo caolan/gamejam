@@ -114,7 +114,7 @@
     },
     {
       "name": "nuke",
-      "magnitude": 30,
+      "magnitude": 90,
       "effect": "hit",
       "image": "nuke.png",
       "startsound": "",
