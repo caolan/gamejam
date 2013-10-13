@@ -630,6 +630,10 @@ function gameReady(images, spells) {
         if (ev.keyCode === 32) {
             ev.preventDefault();
             if (game.state === 'finished') {
+                $('#credits').show();
+                game.state === 'credits';
+            }
+            if (game.state === 'credits') {
                 return window.location.reload(false);
             }
             if (speech.recording) {

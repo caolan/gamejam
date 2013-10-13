@@ -8,38 +8,48 @@
         padding-top: 30px;
         font-family: 'Press Start 2P', cursive;
         color: white;
+        overflow: hidden;
       }
       #game {
         background: #dafeff;
       }
       .speech-help {
         position: absolute;
-        top: 720px;
-        left: 110px;
+        top: 680px;
+        left: 50px;
         font-size: 90%;
       }
       #gameover-text {
         color: black;
         position: absolute;
         top: 600px;
-        left: 260px;
-        width: 880px;
+        padding-left: 30px;
+        width: 1250px;
         text-align: left;
         font-size: 210%;
+        left: 150px;
+        top: 560px;
       }
       #loading-text {
         color: black;
         position: absolute;
         top: 360px;
-        left: 60px;
+        left: 0px;
         width: 1280px;
         text-align: center;
         font-size: 210%;
       }
+      #credits {
+        width: 1280px;
+        height: 720px;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
     </style>
   </head>
   <body>
-    <center>
+    <div style="position: relative; width: 1280px; height: 720px; margin: 0 auto;">
       <canvas width="1280" height="720" id="game"></canvas>
       <div class="speech-help">Press SPACEBAR to toggle casting</div>
       <div id="loading-text">Loading…</div>
@@ -47,7 +57,10 @@
           <p id="gameover">Game Over</p>
           <p id="winner">Player 1 wins</p> 
       </div>
-    </center>
+      <div style="display: none" id="credits">
+        <img src="resources/environment/credits.png" />
+      </div>
+    </div>
     <script src="underscore-min.js"></script>
     <script src="fuzzyset.js"></script>
     <script src="speech.js"></script>
