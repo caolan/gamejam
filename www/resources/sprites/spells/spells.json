@@ -129,6 +129,14 @@
       "endsound": ""
     },
     {
+      "name": "penguin",
+      "magnitude": 15,
+      "effect": "hit",
+      "image": "penguin.png",
+      "startsound": "",
+      "endsound": ""
+    },
+    {
       "name": "plantpot",
       "magnitude": 5,
       "effect": "hit",
