@@ -49,7 +49,20 @@ function cropImage(img, x, y, w, h) {
     c.width = w;
     c.height = h;
     var ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
     ctx.drawImage(img, x, y, w, h, 0, 0, w, h);
+    return c;
+}
+
+function scaleImage(img, ratio) {
+    var c = document.createElement('canvas');
+    var w = img.width * ratio;
+    var h = img.height * ratio;
+    c.width = w;
+    c.height = h;
+    var ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, w, h);
     return c;
 }
 
@@ -108,6 +121,10 @@ function clear(ctx, preserveTransform) {
     }
 }
 
+function getImage(images, name) {
+    return _.findWhere(images, {name: name}).image;
+}
+
 async.map(images, loadImage, function (err, images) {
     if (err) {
         return alert(err);
@@ -125,9 +142,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 1,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'sun'}).image
+            image: scaleImage(getImage(images, 'sun'), 2)
         },
         {
             name: 'farcloud',
@@ -140,9 +155,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 2,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'farcloud'}).image
+            image: scaleImage(getImage(images, 'farcloud'), 2)
         },
         {
             name: 'bg3',
@@ -150,9 +163,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 3,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'bg3'}).image
+            image: scaleImage(getImage(images, 'bg3'), 2)
         },
         {
             name: 'bg6',
@@ -160,9 +171,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 4,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'bg6'}).image
+            image: scaleImage(getImage(images, 'bg6'), 2)
         },
         {
             name: 'nearcloud',
@@ -175,9 +184,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 5,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'nearcloud'}).image
+            image: scaleImage(getImage(images, 'nearcloud'), 2)
         },
         {
             name: 'nearcloudoffset',
@@ -190,9 +197,7 @@ async.map(images, loadImage, function (err, images) {
             x: -ctx.canvas.width,
             y: 0,
             z: 5,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'nearcloud'}).image
+            image: scaleImage(getImage(images, 'nearcloud'), 2)
         },
         {
             name: 'bg5',
@@ -200,9 +205,7 @@ async.map(images, loadImage, function (err, images) {
             x: 0,
             y: 0,
             z: 6,
-            w: 1280,
-            h: 720,
-            image: _.findWhere(images, {name: 'bg5'}).image
+            image: scaleImage(getImage(images, 'bg5'), 2)
         }
     ];
 
@@ -221,20 +224,12 @@ async.map(images, loadImage, function (err, images) {
                 this.image = this.frames[0];
             }
         },
-        x: 0,
+        x: 1280 - 123,
         y: 0,
-        z: 10,
-        w: 124,
-        h: 96,
+        z: 100,
         frames: [
-            cropImage(
-                _.findWhere(images, {name: 'talk'}).image,
-                0, 0, 123, 96
-            ),
-            cropImage(
-                _.findWhere(images, {name: 'talk'}).image,
-                123, 0, 123, 96
-            )
+            cropImage(getImage(images, 'talk'), 0, 0, 123, 96),
+            cropImage(getImage(images, 'talk'), 123, 0, 123, 96)
         ]
     };
 
@@ -255,7 +250,8 @@ async.map(images, loadImage, function (err, images) {
         sprites = _.sortBy(sprites, 'z');
         sprites.forEach(function (s) {
             s.animate();
-            ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
+            //ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
+            ctx.drawImage(s.image, s.x, s.y);
         });
     }
 
