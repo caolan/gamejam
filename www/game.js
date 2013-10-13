@@ -379,10 +379,10 @@ function playerSprites(images, playerone, playertwo) {
         {
             name: 'playerone',
             animate: function () {},
-            x: playerone.top,
-            y: playerone.left,
+            x: playerone.left,
+            y: playerone.top,
             z: 7,
-            image: scaleImage(getImage(images, 'helmet1'), 8)
+            image: scaleImage(getImage(images, 'helmet1'), 8*2)
         },
         {
             name: 'playertwo',
@@ -390,7 +390,7 @@ function playerSprites(images, playerone, playertwo) {
             x: playertwo.left,
             y: playertwo.top,
             z: 7,
-            image: scaleImage(getImage(images, 'snakeguy1'), 8)
+            image: scaleImage(getImage(images, 'snakeguy1'), 8*2)
         },
         {
             name: 'lifebarone',
@@ -509,8 +509,8 @@ function gameReady(images, spells) {
 
     var playerone = {
         number: 1,
-        top: 195,
-        left: 180,
+        top: 0,
+        left: 100,
         fromx: 180,
         tox: 180 + (24 * 4),
         health: 100
@@ -518,8 +518,8 @@ function gameReady(images, spells) {
 
     var playertwo = {
         number: 2,
-        top: 195,
-        left: 1280 - 180 - (24 * 8),
+        top: 0,
+        left: 1280 - 100 - (24 * 16),
         tox: 1280 - 180 - (24 * 6),
         fromx: 1280 - 180 - (24 * 4),
         health: 100
@@ -652,8 +652,8 @@ function gameReady(images, spells) {
                         sprites.push(
                             createSpellSprite(
                                 spells, spell.name,
-                                currentplayer.fromx, currentplayer.top,
-                                nextplayer.tox, nextplayer.top,
+                                currentplayer.fromx, currentplayer.top + 200,
+                                nextplayer.tox, nextplayer.top + 200,
                                 function after() {
                                     var dmg = spell.magnitude;
                                     nextplayer.health -= dmg;
