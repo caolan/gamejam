@@ -133,15 +133,19 @@ function getImage(images, name) {
     return _.findWhere(images, {name: name}).image;
 }
 
-function createSpellSprite(images, name, fromx, fromy, tox, toy) {
+function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
     return {
         name: name,
         image: scaleImage(getImage(images, name), 4),
         x: fromx,
         y: fromy,
+        after: after,
         animate: function () {
             if (this.x === tox && this.y === toy) {
                 this.destroy = true;
+                if (this.after) {
+                    this.after();
+                }
             }
             else {
                 if (this.x <= (tox/20)*19) {
@@ -279,19 +283,77 @@ async.map(images, loadImage, function (err, images) {
         },
         {
             name: 'lifebarone',
-            animate: function () {},
+            animate: function () {
+                var i = Math.max(24 - Math.floor((playerone.health/100) * 24), 0);
+                this.image = this.frames[i];
+            },
             x: 50,
             y: 20,
             z: 20,
-            image: cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64)
+            frames: [
+                // 24 stages
+                cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*2, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*3, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*4, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*5, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*6, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*7, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*8, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*9, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*10, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*11, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*12, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*13, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*14, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*15, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*16, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*17, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*18, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*19, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*20, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*21, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*22, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*23, 256, 64)
+            ]
         },
         {
             name: 'lifebartwo',
-            animate: function () {},
+            animate: function () {
+                var i = Math.max(23 - Math.floor((playertwo.health/100) * 23), 0);
+                this.image = this.frames[i];
+            },
             x: 1280 - 50 - 256,
             y: 20,
             z: 20,
-            image: cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64)
+            frames: [
+                // 24 stages
+                cropImage(getImage(images, 'lifebar'), 0, 0, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*2, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*3, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*4, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*5, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*6, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*7, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*8, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*9, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*10, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*11, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*12, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*13, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*14, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*15, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*16, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*17, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*18, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*19, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*20, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*21, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*22, 256, 64),
+                cropImage(getImage(images, 'lifebar'), 0, 64*23, 256, 64)
+            ]
         }
     ];
 
@@ -333,7 +395,13 @@ async.map(images, loadImage, function (err, images) {
             createSpellSprite(
                 images, 'walrus',
                 playerone.left, playerone.top,
-                playertwo.left, playertwo.top
+                playertwo.left, playertwo.top,
+                function after() {
+                    playertwo.health -= 10;
+                    if (playertwo.health < 0) {
+                        playertwo.health = 0;
+                    }
+                }
             )
         );
     };
