@@ -575,6 +575,8 @@ function gameReady(images, spells) {
                                     nextplayer.health -= dmg;
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
+                                        $('#gameover-text #winner').text('Player ' + currentplayer.number + ' wins');
+                                        $('#gameover-text').show();
                                     }
                                     var tmpplayer = nextplayer;
                                     nextplayer = currentplayer;

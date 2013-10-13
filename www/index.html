@@ -18,12 +18,24 @@
         left: 110px;
         font-size: 90%;
       }
+      #gameover-text {
+        color: red;
+        position: absolute;
+        top: 360px;
+        left: 540px;
+        font-size: 210%;
+      }
+
     </style>
   </head>
   <body>
     <center>
       <canvas width="1280" height="720" id="game"></canvas>
       <div class="speech-help">Press SPACEBAR to toggle casting</div>
+      <div id="gameover-text" style="display: None">
+          <p id="gameover">Game Over</p>
+          <p id="winner">Player 1 wins</p> 
+      </div>
     </center>
     <script src="underscore-min.js"></script>
     <script src="fuzzyset.js"></script>
