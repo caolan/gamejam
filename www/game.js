@@ -115,6 +115,14 @@ var images = [
     {name: 'player2select', url: 'resources/sprites/display/player2select.png'}
 ];
 
+
+function loadSpells() {
+    return $.getJSON("resources/sprites/spells/fireball.json").then(function (data) {
+        return data;
+    });
+}
+
+
 function loadImage(x, callback) {
     var img = new Image();   // Create new img element
     img.addEventListener("load", function() {
