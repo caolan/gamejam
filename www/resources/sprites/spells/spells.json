@@ -13,7 +13,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "banana.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
@@ -29,7 +29,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "bees.png",
-      "startsound": "",
+      "startsound": "bees.wav",
       "endsound": ""
     },
     {
@@ -38,7 +38,7 @@
       "effect": "hit",
       "image": "brick.png",
       "startsound": "",
-      "endsound": ""
+      "endsound": "woosh.wav"
     },
     {
       "name": "chair",
@@ -46,7 +46,7 @@
       "effect": "hit",
       "image": "chair.png",
       "startsound": "",
-      "endsound": ""
+      "endsound": "woosh.wav"
     },
     {
       "name": "chicken",
@@ -69,7 +69,7 @@
       "magnitude": 2,
       "effect": "hit",
       "image": "flower.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
@@ -77,7 +77,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "ham.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
@@ -101,7 +101,7 @@
       "magnitude": 15,
       "effect": "hit",
       "image": "iron.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
@@ -141,7 +141,7 @@
       "magnitude": 5,
       "effect": "hit",
       "image": "plantpot.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
@@ -157,7 +157,7 @@
       "magnitude": 1,
       "effect": "hit",
       "image": "shoelaces.png",
-      "startsound": "",
+      "startsound": "woosh.wav",
       "endsound": ""
     },
     {
