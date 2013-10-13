@@ -151,20 +151,20 @@ function createSpellSprite(images, name, fromx, fromy, tox, toy, after) {
                 }
             }
             else {
-                if (this.x <= (tox/20)*19) {
-                    this.x += (tox/20)
+                if (this.x <= (tox/40)*39) {
+                    this.x += (tox/40)
                 }
-                else if (this.x >= tox + (tox/20)) {
-                    this.x -= (tox/20)
+                else if (this.x >= tox + (tox/40)) {
+                    this.x -= (tox/40)
                 }
                 else {
                     this.x = tox;
                 }
-                if (this.y < (toy/20)*19) {
-                    this.y += (toy/20)
+                if (this.y < (toy/40)*39) {
+                    this.y += (toy/40)
                 }
-                else if (this.y >= toy + (toy/20)) {
-                    this.y -= (toy/20)
+                else if (this.y >= toy + (toy/40)) {
+                    this.y -= (toy/40)
                 }
                 else {
                     this.y = toy;
@@ -446,7 +446,6 @@ async.map(images, loadImage, function (err, images) {
         });
         sprites.forEach(function (s) {
             s.animate();
-            //ctx.drawImage(s.image, s.x, s.y, s.w, s.h);
             ctx.drawImage(s.image, s.x, s.y);
             if (s.xr || s.yr) {
                 nx = s.xr?s.x - s.image.width * s.xr : s.x;
