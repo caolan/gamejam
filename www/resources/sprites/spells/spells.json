@@ -181,8 +181,8 @@
       "magnitude": 10,
       "effect": "hit",
       "image": "spanner.png",
-      "startsound": "spanner.wav",
-      "endsound": ""
+      "startsound": "woosh.wav",
+      "endsound": "spanner.wav"
     },
     {
       "name": "swords",
