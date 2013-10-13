@@ -133,18 +133,23 @@ async.map(images, loadImage, function (err, images) {
         return alert(err);
     }
 
+    var vscale = 0.1;
     var sprites = [
         {
             name: 'sun',
             animate: function () {
-               this.x += 1;
-               if (this.x > ctx.canvas.width) {
-                   this.x = 0;
+               this.x += this.vx * vscale;
+               this.y += this.vy * vscale;
+               if (this.y < -200) {
+                   this.x = -100;
+                   this.y = ctx.canvas.height/2.0;
                }
             },
-            x: 0,
-            y: 0,
+            x: -100,
+            y: -200,
             z: 1,
+            vx: 1,
+            vy: -2,
             image: scaleImage(getImage(images, 'sun'), 2)
         },
         {
