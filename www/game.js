@@ -280,7 +280,7 @@ function baseSprites(images) {
             animate: function () {},
             x: 0,
             y: 0,
-            z: 6,
+            z: 8,
             image: scaleImage(getImage(images, 'bg5'), 2)
         },
         {
@@ -288,7 +288,7 @@ function baseSprites(images) {
             animate: function () {},
             x: 0,
             y: 0,
-            z: 8,
+            z: 9,
             image: scaleImage(getImage(images, 'level_terrain'), 2)
         }
     ];
@@ -301,7 +301,7 @@ function playerSprites(images, playerone, playertwo) {
             animate: function () {},
             x: playerone.top,
             y: playerone.left,
-            z: 10,
+            z: 6,
             image: scaleImage(getImage(images, 'helmet1'), 8)
         },
         {
@@ -309,7 +309,7 @@ function playerSprites(images, playerone, playertwo) {
             animate: function () {},
             x: playertwo.left,
             y: playertwo.top,
-            z: 10,
+            z: 6,
             image: scaleImage(getImage(images, 'snakeguy1'), 8)
         },
         {
@@ -450,7 +450,7 @@ function gameReady(images) {
         image: getImage(images, 'player1select'),
         x: 0,
         y: 0,
-        z: 11
+        z: 7
     };
 
     var player2select = {
@@ -458,7 +458,7 @@ function gameReady(images) {
         image: getImage(images, 'player2select'),
         x: 0,
         y: 0,
-        z: 11
+        z: 7
     };
 
     function removeSprite(name) {
