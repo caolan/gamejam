@@ -118,7 +118,9 @@ var images = [
     {name: 'walrus', url: 'resources/sprites/spells/walrus.png'},
     {name: 'chicken', url: 'resources/sprites/spells/chicken.png'},
     {name: 'player1select', url: 'resources/sprites/display/player1select.png'},
-    {name: 'player2select', url: 'resources/sprites/display/player2select.png'}
+    {name: 'player2select', url: 'resources/sprites/display/player2select.png'},
+    {name: 'player1wins', url: 'resources/environment/DeathstateHelmetwin.png'},
+    {name: 'player2wins', url: 'resources/environment/DeathstateSnakewin.png'}
 ];
 
 
@@ -560,6 +562,22 @@ function gameReady(images, spells) {
         yr: 1.0,
     };
 
+    var player1wins = {
+        name: 'player1wins',
+        image: scaleImage(getImage(images, 'player1wins'), 2),
+        x: 0,
+        y: 0,
+        z: 1000
+    };
+
+    var player2wins = {
+        name: 'player2wins',
+        image: scaleImage(getImage(images, 'player2wins'), 2),
+        x: 0,
+        y: 0,
+        z: 1000
+    };
+
     function removeSprite(name) {
         sprites = _.filter(sprites, function (s) {
             return s.name !== name;
@@ -637,14 +655,23 @@ function gameReady(images, spells) {
                                     if (nextplayer.health < 0) {
                                         nextplayer.health = 0;
                                         game.state = 'finished';
-                                        console.log('finished game');
+                                        disableRecording();
+                                        if (currentplayer.number === 1) {
+                                            sprites.push(player1wins);
+                                        }
+                                        else {
+                                            sprites.push(player2wins);
+                                        }
                                         $('#gameover-text #winner').text('Player ' + currentplayer.number + ' wins');
                                         $('#gameover-text').show();
+                                        $('.speech-help').hide();
                                     }
-                                    var tmpplayer = nextplayer;
-                                    nextplayer = currentplayer;
-                                    currentplayer = tmpplayer;
-                                    selectCurrentPlayer();
+                                    else {
+                                        var tmpplayer = nextplayer;
+                                        nextplayer = currentplayer;
+                                        currentplayer = tmpplayer;
+                                        selectCurrentPlayer();
+                                    }
                                 }
                             )
                         );
