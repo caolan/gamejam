@@ -215,7 +215,7 @@ function getSpellImage(spells, name) {
 }
 
 function getVelocity(spell, fromx, tox) {
-    if (spell.startsound) {
+    if (spell.startsound.play) {
         var frames = spell.startsound.duration / 25 * 1000
         var distance = Math.abs(tox - fromx)
         var v = distance/frames
@@ -646,7 +646,7 @@ function gameReady(images, spells) {
                         disableRecording();
                         clearPlayerSelect();
                         var spell = _.findWhere(spells, {name: cmd[1]});
-                        if (spell.startsound) {
+                        if (spell.startsound.play) {
                             spell.startsound.play();
                         }
                         sprites.push(
@@ -658,7 +658,7 @@ function gameReady(images, spells) {
                                     var dmg = spell.magnitude * Math.random() * 3;
                                     console.log("Damage:" + dmg);
                                     nextplayer.health -= dmg;
-                                    if (spell.endsound) {
+                                    if (spell.endsound.play) {
                                         spell.endsound.play();
                                     }
                                     if (nextplayer.health < 0) {
