@@ -2,17 +2,39 @@ var game = {};
 
 var commands = FuzzySet();
 commands.add('spellcasting');
-commands.add('summoning');
-commands.add('dismiss');
+//commands.add('summoning');
+//commands.add('dismiss');
 
 var spells = FuzzySet();
-spells.add('penguin');
+/*
+spells.add('arrow');
+spells.add('banana');
+spells.add('bees');
+spells.add('brick');
+spells.add('chair');
+*/
+spells.add('chicken');
+/*
 spells.add('fireball');
-spells.add('burrito');
-spells.add('beer');
+spells.add('flower');
+spells.add('ham');
+spells.add('hands');
+spells.add('ice');
+spells.add('moose');
+spells.add('nuke');
+spells.add('octopus');
+spells.add('plantpot');
+spells.add('sheep');
 spells.add('shoelaces');
+spells.add('snakes');
+spells.add('song');
+spells.add('spanner');
+spells.add('swords');
+*/
 spells.add('walrus');
-spells.add('nyan cat');
+/*
+spells.add('water');
+*/
 
 var summons = FuzzySet();
 summons.add('Odin');
@@ -70,26 +92,6 @@ function scaleImage(img, ratio) {
 }
 
 
-document.onkeypress = function (ev) {
-    // spacebar
-    if (ev.keyCode === 32) {
-        ev.preventDefault();
-        if (speech.recording) {
-            speech.stop();
-        }
-        else {
-            speech.listen(function (err, str) {
-                var cmd = parseCommand(str);
-                console.log(cmd);
-                cmd[0] = cmd[0].toUpperCase();
-                alert(cmd);
-            });
-        }
-        return;
-    }
-};
-
-
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
@@ -106,7 +108,8 @@ var images = [
     {name: 'spookyscaryskeleton1', url: 'resources/sprites/spookyscaryskeleton1.png'},
     {name: 'snakeguy1', url: 'resources/sprites/snakeguy1.png'},
     {name: 'lifebar', url: 'resources/sprites/display/lifebar.png'},
-    {name: 'walrus', url: 'resources/sprites/spells/walrus.png'}
+    {name: 'walrus', url: 'resources/sprites/spells/walrus.png'},
+    {name: 'chicken', url: 'resources/sprites/spells/chicken.png'}
 ];
 
 function loadImage(x, callback) {
@@ -391,19 +394,38 @@ async.map(images, loadImage, function (err, images) {
         sprites = _.filter(sprites, function (s) {
             return s.name !== 'talking';
         });
-        sprites.push(
-            createSpellSprite(
-                images, 'walrus',
-                playerone.left, playerone.top,
-                playertwo.left, playertwo.top,
-                function after() {
-                    playertwo.health -= 10;
-                    if (playertwo.health < 0) {
-                        playertwo.health = 0;
+    };
+
+    document.onkeypress = function (ev) {
+        // spacebar
+        if (ev.keyCode === 32) {
+            ev.preventDefault();
+            if (speech.recording) {
+                speech.stop();
+            }
+            else {
+                speech.listen(function (err, str) {
+                    var cmd = parseCommand(str);
+                    console.log(cmd);
+                    if (cmd[0] === 'spellcasting') {
+                        sprites.push(
+                            createSpellSprite(
+                                images, cmd[1],
+                                playerone.left, playerone.top,
+                                playertwo.left, playertwo.top,
+                                function after() {
+                                    playertwo.health -= 10;
+                                    if (playertwo.health < 0) {
+                                        playertwo.health = 0;
+                                    }
+                                }
+                            )
+                        );
                     }
-                }
-            )
-        );
+                });
+            }
+            return;
+        }
     };
 
     function animationLoop() {
