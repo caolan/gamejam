@@ -246,7 +246,7 @@ async.map(images, loadImage, function (err, images) {
             }
         },
         x: 1280 - 123,
-        y: 0,
+        y: 720 - 96,
         z: 100,
         frames: [
             cropImage(getImage(images, 'talk'), 0, 0, 123, 96),
