@@ -103,6 +103,7 @@ var images = [
     {name: 'nearcloud', url: 'resources/environment/bg4.png'},
     {name: 'bg5', url: 'resources/environment/bg5.png'},
     {name: 'bg6', url: 'resources/environment/bg6.png'},
+    {name: 'level_terrain', url: 'resources/environment/level_terrain.png'},
     {name: 'talk', url: 'resources/sprites/display/talk.png'},
     {name: 'helmet1', url: 'resources/sprites/helmet1.png'},
     {name: 'spookyscaryskeleton1', url: 'resources/sprites/spookyscaryskeleton1.png'},
@@ -280,6 +281,14 @@ async.map(images, loadImage, function (err, images) {
             y: 0,
             z: 6,
             image: scaleImage(getImage(images, 'bg5'), 2)
+        },
+        {
+            name: 'level_terrain',
+            animate: function () {},
+            x: 0,
+            y: 0,
+            z: 8,
+            image: scaleImage(getImage(images, 'level_terrain'), 2)
         },
         {
             name: 'playerone',
