@@ -1,6 +1,6 @@
 INSTALL:
 
-- Install nodejs
+- Install nodejs - see http://howtonode.org/how-to-install-nodejs
 - Install Google Chrome / Chromium version 25 or later
 - Run "npm install"
 
